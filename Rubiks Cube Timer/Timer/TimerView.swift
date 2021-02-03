@@ -71,9 +71,10 @@ struct TimerView: View {
             Spacer()
             HStack {
                 Spacer()
-                Text("\(timerManager.elapsed)")
+                Text("\(timerManager.formatedTime())")
                     .font(.system(size: 60))
                     .fontWeight(.semibold)
+                    .foregroundColor(Color.white)
 
                 Spacer()
             }
@@ -81,9 +82,9 @@ struct TimerView: View {
         })
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .background(
-            isLoading ? (flags.hasFinished ? Color.gray : Color.red) :
-                (!flags.finishedLoading ? Color.gray :
-                    (flags.hasStarted ? Color.gray : Color.green)
+            isLoading ? (flags.hasFinished ? Color.black : Color.red) :
+                (!flags.finishedLoading ? Color.black :
+                    (flags.hasStarted ? Color.black : Color.green)
                 )
         )
         .gesture(combined)
