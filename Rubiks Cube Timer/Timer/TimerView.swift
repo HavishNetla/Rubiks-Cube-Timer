@@ -29,12 +29,13 @@ struct TimerView: View {
     @State var hasStarted = false
     
     @ObservedObject var flags = Flags()
+    let generator = ScrambleGenerator()
     
     var delayPress: some Gesture {
         LongPressGesture(minimumDuration: 0.5)
             .updating($isLoading) { currentState, gestureState, transaction in
                 gestureState = currentState
-                
+                print(generator.generateScramble())
                 if flags.hasStarted {
                     flags.hasFinished = true
                     flags.finishedLoading = false
@@ -66,8 +67,8 @@ struct TimerView: View {
     
     var body: some View {
         let combined = delayPress.sequenced(before: longPress)
-
-        VStack(alignment: .center, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+        
+        VStack(alignment: .center, spacing: nil, content: {
             Spacer()
             HStack {
                 Spacer()
