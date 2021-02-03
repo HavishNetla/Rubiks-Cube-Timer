@@ -12,36 +12,27 @@ class Flags: ObservableObject {
     @Published var finishedLoading: Bool = false
     @Published var hasStarted: Bool = false
     @Published var hasFinished: Bool = false
+    @Published var scramble: String = ""
 }
 
 struct TimerView: View {
     @ObservedObject var timerManager = TimerManager()
-    
-    @State var bColor = Color.white
-    
-    //@State var hasStarted = false
-    @State var isReleased = false
-    @State var test = false
-    @State var loading = false
+    let generator = ScrambleGenerator()
         
     @GestureState var isLoading = false
-    @State var finishedLoading = false
-    @State var hasStarted = false
-    
     @ObservedObject var flags = Flags()
-    let generator = ScrambleGenerator()
     
     var delayPress: some Gesture {
         LongPressGesture(minimumDuration: 0.5)
             .updating($isLoading) { currentState, gestureState, transaction in
                 gestureState = currentState
-                print(generator.generateScramble())
                 if flags.hasStarted {
                     flags.hasFinished = true
                     flags.finishedLoading = false
                     flags.hasStarted = false
                     
                     timerManager.stop()
+                    flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
                 } else {
                     flags.hasFinished = false
                 }
@@ -69,7 +60,14 @@ struct TimerView: View {
         let combined = delayPress.sequenced(before: longPress)
         
         VStack(alignment: .center, spacing: nil, content: {
+            HStack {
+                Spacer()
+                Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 100, leading: 20, bottom: 0, trailing: 20 ))
             Spacer()
+
             HStack {
                 Spacer()
                 Text("\(timerManager.formatedTime())")
@@ -78,7 +76,7 @@ struct TimerView: View {
                     .foregroundColor(Color.white)
 
                 Spacer()
-            }
+            }.padding(.bottom, 100)
             Spacer()
         })
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
@@ -89,7 +87,10 @@ struct TimerView: View {
                 )
         )
         .gesture(combined)
-       
+        .edgesIgnoringSafeArea(.all)
+        .onAppear(perform: {
+            flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+        })
     }
 }
 
