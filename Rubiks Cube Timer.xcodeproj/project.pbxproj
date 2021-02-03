@@ -13,6 +13,9 @@
 		78540DDC25C8A8C500D0FEE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78540DDB25C8A8C500D0FEE4 /* Preview Assets.xcassets */; };
 		78540DE725C8A8C500D0FEE4 /* Rubiks_Cube_TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DE625C8A8C500D0FEE4 /* Rubiks_Cube_TimerTests.swift */; };
 		78540DF225C8A8C500D0FEE4 /* Rubiks_Cube_TimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DF125C8A8C500D0FEE4 /* Rubiks_Cube_TimerUITests.swift */; };
+		78540E0425C8AAC700D0FEE4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540E0325C8AAC700D0FEE4 /* TimerView.swift */; };
+		78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540E1125C8BE0800D0FEE4 /* TimerManager.swift */; };
+		78797C0F25CA218000D26C17 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78797C0E25CA218000D26C17 /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		78540DED25C8A8C500D0FEE4 /* Rubiks Cube TimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rubiks Cube TimerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78540DF125C8A8C500D0FEE4 /* Rubiks_Cube_TimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubiks_Cube_TimerUITests.swift; sourceTree = "<group>"; };
 		78540DF325C8A8C500D0FEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78540E0325C8AAC700D0FEE4 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		78540E1125C8BE0800D0FEE4 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		78797C0E25CA218000D26C17 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,7 @@
 		78540DD325C8A8C300D0FEE4 /* Rubiks Cube Timer */ = {
 			isa = PBXGroup;
 			children = (
+				78540E0225C8A9D900D0FEE4 /* Timer */,
 				78540DD425C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift */,
 				78540DD625C8A8C300D0FEE4 /* ContentView.swift */,
 				78540DD825C8A8C500D0FEE4 /* Assets.xcassets */,
@@ -128,6 +135,16 @@
 				78540DF325C8A8C500D0FEE4 /* Info.plist */,
 			);
 			path = "Rubiks Cube TimerUITests";
+			sourceTree = "<group>";
+		};
+		78540E0225C8A9D900D0FEE4 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				78540E0325C8AAC700D0FEE4 /* TimerView.swift */,
+				78540E1125C8BE0800D0FEE4 /* TimerManager.swift */,
+				78797C0E25CA218000D26C17 /* Test.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78540E0425C8AAC700D0FEE4 /* TimerView.swift in Sources */,
+				78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */,
+				78797C0F25CA218000D26C17 /* Test.swift in Sources */,
 				78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */,
 				78540DD525C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift in Sources */,
 			);
@@ -419,6 +439,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Rubiks Cube Timer/Preview Content\"";
+				DEVELOPMENT_TEAM = 45Q2K2H5NA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Rubiks Cube Timer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -440,6 +461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Rubiks Cube Timer/Preview Content\"";
+				DEVELOPMENT_TEAM = 45Q2K2H5NA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Rubiks Cube Timer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
