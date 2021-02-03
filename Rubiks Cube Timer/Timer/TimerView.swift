@@ -20,52 +20,44 @@ struct TimerView: View {
     @GestureState var testing = false
     
     var delayPress: some Gesture {
-        LongPressGesture(minimumDuration: 2.0)
-            .onChanged({ state in
-                if isReleased {
-                    timerManager.stop()
-                    hasStarted = false
-                    isReleased = false
-                    loading = false
-                } else {
-                    loading = true
-                }
-                print("change", state)
-                //test = state
-            })
-            .onEnded({ _ in
-                loading = false
-                hasStarted = true
-            })
-    }
-    
-    var longPress1: some Gesture {
-        LongPressGesture(minimumDuration: 3)
+        LongPressGesture(minimumDuration: 0.5)
             .updating($testing) { currentState, gestureState, transaction in
                 gestureState = currentState
                 if isReleased {
-                    timerManager.stop()
                     hasStarted = false
                     isReleased = false
                     loading = false
+                    
+                    timerManager.stop()
+                    
+//                    print("hasStarted: ", hasStarted, "isReleased: ", isReleased, "loading", loading, "testing: ", testing)
                 } else {
                     loading = true
                 }
+                //print("hasStarted: ", hasStarted, "isReleased: ", isReleased, "loading", loading, "testing: ", testing)
             }
+            .onEnded({ _ in
+                print(".onEnded()")
+                loading = false
+                hasStarted = true
+                
+                if isReleased {
+                    isReleased = false
+                }
+            })
     }
     
     var longPress: some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged({ currentState in
-                loading = false
-                hasStarted = true
+//                loading = false
+//                hasStarted = true
 
-                timerManager.reset()
+                //timerManager.reset()
                 
                 timerManager.reset()
             })
             .onEnded ({ finished in
-
                 if isReleased {
                     timerManager.stop()
                     hasStarted = false
@@ -83,11 +75,11 @@ struct TimerView: View {
 
     
     var body: some View {
-        let combined = longPress1.sequenced(before: longPress)
+        let combined = delayPress.sequenced(before: longPress)
 
         VStack(alignment: .center, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
             Spacer()
-            Text(testing ? "true" : "false")
+            Text(isReleased ? "true" : "false")
             HStack {
                 Spacer()
                 Text("\(timerManager.elapsed)")
@@ -101,10 +93,15 @@ struct TimerView: View {
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
 //        .background(isDetectingLongPress ? Color.red : (completedLongPress ? Color(UIColor.green) : Color(UIColor.systemBackground)))
         .background(
-            $testing.wrappedValue ? Color.red :
-            (!hasStarted ? Color.gray :
-                (isReleased ? Color.gray : Color.green))
+            testing ? Color.green : Color.red
+            //hasStarted ? Color.green : Color.red
         )
+        /*
+         isReleased ? Color.gray :
+         ($testing.wrappedValue ? Color.red :
+         (!hasStarted ? Color.gray :
+             (isReleased ? Color.gray : Color.green)))
+         */
         .gesture(combined)
         .onTapGesture {
             print("stop")
