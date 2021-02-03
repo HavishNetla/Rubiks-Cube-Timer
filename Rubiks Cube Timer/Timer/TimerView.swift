@@ -7,68 +7,58 @@
 
 import SwiftUI
 
+
+class Flags: ObservableObject {
+    @Published var finishedLoading: Bool = false
+    @Published var hasStarted: Bool = false
+    @Published var hasFinished: Bool = false
+}
+
 struct TimerView: View {
     @ObservedObject var timerManager = TimerManager()
     
     @State var bColor = Color.white
     
-    @State var hasStarted = false
+    //@State var hasStarted = false
     @State var isReleased = false
     @State var test = false
     @State var loading = false
         
-    @GestureState var testing = false
+    @GestureState var isLoading = false
+    @State var finishedLoading = false
+    @State var hasStarted = false
+    
+    @ObservedObject var flags = Flags()
     
     var delayPress: some Gesture {
         LongPressGesture(minimumDuration: 0.5)
-            .updating($testing) { currentState, gestureState, transaction in
+            .updating($isLoading) { currentState, gestureState, transaction in
                 gestureState = currentState
-                if isReleased {
-                    hasStarted = false
-                    isReleased = false
-                    loading = false
+                
+                if flags.hasStarted {
+                    flags.hasFinished = true
+                    flags.finishedLoading = false
+                    flags.hasStarted = false
                     
                     timerManager.stop()
-                    
-//                    print("hasStarted: ", hasStarted, "isReleased: ", isReleased, "loading", loading, "testing: ", testing)
                 } else {
-                    loading = true
+                    flags.hasFinished = false
                 }
-                //print("hasStarted: ", hasStarted, "isReleased: ", isReleased, "loading", loading, "testing: ", testing)
             }
             .onEnded({ _ in
-                print(".onEnded()")
-                loading = false
-                hasStarted = true
-                
-                if isReleased {
-                    isReleased = false
-                }
+                flags.finishedLoading = true
             })
     }
     
     var longPress: some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged({ currentState in
-//                loading = false
-//                hasStarted = true
-
-                //timerManager.reset()
-                
-                timerManager.reset()
+                //inishedLoading = true
             })
             .onEnded ({ finished in
-                if isReleased {
-                    timerManager.stop()
-                    hasStarted = false
-                    isReleased = false
-                    loading = false
-                } else {
-                    timerManager.start()
-                    
-                    isReleased = true
-                    hasStarted = true
-                }
+                flags.hasStarted = true
+                timerManager.reset()
+                timerManager.start()
             })
     }
     
@@ -79,7 +69,6 @@ struct TimerView: View {
 
         VStack(alignment: .center, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
             Spacer()
-            Text(isReleased ? "true" : "false")
             HStack {
                 Spacer()
                 Text("\(timerManager.elapsed)")
@@ -91,22 +80,14 @@ struct TimerView: View {
             Spacer()
         })
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-//        .background(isDetectingLongPress ? Color.red : (completedLongPress ? Color(UIColor.green) : Color(UIColor.systemBackground)))
         .background(
-            testing ? Color.green : Color.red
-            //hasStarted ? Color.green : Color.red
+            isLoading ? (flags.hasFinished ? Color.gray : Color.red) :
+                (!flags.finishedLoading ? Color.gray :
+                    (flags.hasStarted ? Color.gray : Color.green)
+                )
         )
-        /*
-         isReleased ? Color.gray :
-         ($testing.wrappedValue ? Color.red :
-         (!hasStarted ? Color.gray :
-             (isReleased ? Color.gray : Color.green)))
-         */
         .gesture(combined)
-        .onTapGesture {
-            print("stop")
-            //test = "testing"
-        }
+       
     }
 }
 
