@@ -13,6 +13,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             TimerView()
+                //.environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

@@ -19,6 +19,8 @@
 		786C933D25CB07F1003470F3 /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C933C25CB07F1003470F3 /* ScrambleGenerator.swift */; };
 		787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */; };
 		787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677E725CB892300DF38A7 /* PersistenceController.swift */; };
+		787677F125CB9ADB00DF38A7 /* Solves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F025CB9ADB00DF38A7 /* Solves.swift */; };
+		787677F925CB9B1100DF38A7 /* SolveRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F825CB9B1100DF38A7 /* SolveRow.swift */; };
 		78797C0F25CA218000D26C17 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78797C0E25CA218000D26C17 /* Test.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		786C933C25CB07F1003470F3 /* ScrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGenerator.swift; sourceTree = "<group>"; };
 		787677DF25CB887700DF38A7 /* Solve.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Solve.xcdatamodel; sourceTree = "<group>"; };
 		787677E725CB892300DF38A7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		787677F025CB9ADB00DF38A7 /* Solves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solves.swift; sourceTree = "<group>"; };
+		787677F825CB9B1100DF38A7 /* SolveRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveRow.swift; sourceTree = "<group>"; };
 		78797C0E25CA218000D26C17 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +113,7 @@
 		78540DD325C8A8C300D0FEE4 /* Rubiks Cube Timer */ = {
 			isa = PBXGroup;
 			children = (
+				787677EF25CB9AC900DF38A7 /* Log */,
 				78540E0225C8A9D900D0FEE4 /* Timer */,
 				78540DD425C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift */,
 				78540DD625C8A8C300D0FEE4 /* ContentView.swift */,
@@ -165,6 +170,15 @@
 				786C933C25CB07F1003470F3 /* ScrambleGenerator.swift */,
 			);
 			path = Scramble;
+			sourceTree = "<group>";
+		};
+		787677EF25CB9AC900DF38A7 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				787677F025CB9ADB00DF38A7 /* Solves.swift */,
+				787677F825CB9B1100DF38A7 /* SolveRow.swift */,
+			);
+			path = Log;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,8 +312,10 @@
 			files = (
 				78540E0425C8AAC700D0FEE4 /* TimerView.swift in Sources */,
 				78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */,
+				787677F125CB9ADB00DF38A7 /* Solves.swift in Sources */,
 				786C933D25CB07F1003470F3 /* ScrambleGenerator.swift in Sources */,
 				78797C0F25CA218000D26C17 /* Test.swift in Sources */,
+				787677F925CB9B1100DF38A7 /* SolveRow.swift in Sources */,
 				78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */,
 				787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */,
 				78540DD525C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift in Sources */,

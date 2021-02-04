@@ -17,6 +17,14 @@ class Flags: ObservableObject {
 }
 
 struct TimerView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Solve.timestamp, ascending: true)],
+        animation: .default)
+    private var items: FetchedResults<Solve>
+    
+    
     @ObservedObject var timerManager = TimerManager()
     let generator = ScrambleGenerator()
         
@@ -37,6 +45,7 @@ struct TimerView: View {
                     flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
                     
                     UIApplication.shared.isIdleTimerDisabled = false
+                    addItem()
                 } else {
                     flags.hasFinished = false
                 }
@@ -95,6 +104,23 @@ struct TimerView: View {
         .onAppear(perform: {
             flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
         })
+    }
+    
+    private func addItem() {
+        withAnimation {
+            let newItem = Solve(context: viewContext)
+            newItem.timestamp = Date()
+            newItem.time = 69
+            
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
 }
 
