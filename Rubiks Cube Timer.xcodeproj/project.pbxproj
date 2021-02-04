@@ -17,6 +17,8 @@
 		78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540E1125C8BE0800D0FEE4 /* TimerManager.swift */; };
 		786C933225CB07A9003470F3 /* ScrambleGeneratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C933125CB07A9003470F3 /* ScrambleGeneratorTest.swift */; };
 		786C933D25CB07F1003470F3 /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C933C25CB07F1003470F3 /* ScrambleGenerator.swift */; };
+		787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */; };
+		787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677E725CB892300DF38A7 /* PersistenceController.swift */; };
 		78797C0F25CA218000D26C17 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78797C0E25CA218000D26C17 /* Test.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,8 @@
 		78540E1125C8BE0800D0FEE4 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		786C933125CB07A9003470F3 /* ScrambleGeneratorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGeneratorTest.swift; sourceTree = "<group>"; };
 		786C933C25CB07F1003470F3 /* ScrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGenerator.swift; sourceTree = "<group>"; };
+		787677DF25CB887700DF38A7 /* Solve.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Solve.xcdatamodel; sourceTree = "<group>"; };
+		787677E725CB892300DF38A7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		78797C0E25CA218000D26C17 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +115,8 @@
 				78540DD825C8A8C500D0FEE4 /* Assets.xcassets */,
 				78540DDD25C8A8C500D0FEE4 /* Info.plist */,
 				78540DDA25C8A8C500D0FEE4 /* Preview Content */,
+				787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */,
+				787677E725CB892300DF38A7 /* PersistenceController.swift */,
 			);
 			path = "Rubiks Cube Timer";
 			sourceTree = "<group>";
@@ -295,7 +301,9 @@
 				786C933D25CB07F1003470F3 /* ScrambleGenerator.swift in Sources */,
 				78797C0F25CA218000D26C17 /* Test.swift in Sources */,
 				78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */,
+				787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */,
 				78540DD525C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift in Sources */,
+				787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +624,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				787677DF25CB887700DF38A7 /* Solve.xcdatamodel */,
+			);
+			currentVersion = 787677DF25CB887700DF38A7 /* Solve.xcdatamodel */;
+			path = Timer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 78540DC925C8A8C300D0FEE4 /* Project object */;
 }

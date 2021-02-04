@@ -8,10 +8,10 @@
 import Foundation
 
 class TimerManager: ObservableObject {
-    @Published var elapsed = 0.00
+    @Published var elapsed = 0.000
     var timer = Timer()
     
-    let precision = 3 // how many digits after the decimal
+    let precision = 2 // how many digits after the decimal
 
     func start() {
         elapsed = 0.00
@@ -36,6 +36,10 @@ class TimerManager: ObservableObject {
         var numToRemove = 0
         if len - precision < 0 {
             numToRemove = 0
+            
+            for _ in 1...(precision - len) {
+                string.append("0")
+            }
         } else {
             numToRemove = len - precision
         }

@@ -26,7 +26,7 @@ class ScrambleGenerator {
                 let prev = scramble[i - 1]
                 var curr = generateRandomMove()
                 
-                while prev.0.rawValue != curr.0.rawValue {
+                while prev.0.rawValue == curr.0.rawValue {
                     curr = generateRandomMove()
                 }
             }

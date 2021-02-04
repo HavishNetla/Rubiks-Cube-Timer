@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AudioToolbox
 
 
 class Flags: ObservableObject {
@@ -21,7 +22,8 @@ struct TimerView: View {
         
     @GestureState var isLoading = false
     @ObservedObject var flags = Flags()
-    
+    let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+
     var delayPress: some Gesture {
         LongPressGesture(minimumDuration: 0.5)
             .updating($isLoading) { currentState, gestureState, transaction in
@@ -33,12 +35,16 @@ struct TimerView: View {
                     
                     timerManager.stop()
                     flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+                    
+                    UIApplication.shared.isIdleTimerDisabled = false
                 } else {
                     flags.hasFinished = false
                 }
             }
             .onEnded({ _ in
+                UIApplication.shared.isIdleTimerDisabled = true
                 flags.finishedLoading = true
+                impactMed.impactOccurred()
             })
     }
     
@@ -53,8 +59,6 @@ struct TimerView: View {
                 timerManager.start()
             })
     }
-    
-
     
     var body: some View {
         let combined = delayPress.sequenced(before: longPress)
