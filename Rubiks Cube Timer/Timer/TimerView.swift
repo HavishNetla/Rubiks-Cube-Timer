@@ -14,6 +14,7 @@ class Flags: ObservableObject {
     @Published var hasStarted: Bool = false
     @Published var hasFinished: Bool = false
     @Published var scramble: String = ""
+    @Published var prevScramble: String = ""
 }
 
 struct TimerView: View {
@@ -42,6 +43,8 @@ struct TimerView: View {
                     flags.hasStarted = false
                     
                     timerManager.stop()
+                    
+                    flags.prevScramble = flags.scramble
                     flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
                     
                     UIApplication.shared.isIdleTimerDisabled = false
@@ -110,7 +113,8 @@ struct TimerView: View {
         withAnimation {
             let newItem = Solve(context: viewContext)
             newItem.timestamp = Date()
-            newItem.time = 69
+            newItem.time = timerManager.elapsed
+            newItem.scramble = flags.prevScramble
             
             do {
                 try viewContext.save()
