@@ -22,15 +22,21 @@ class ScrambleGenerator {
         // Generate 20 random moves
         var scramble: [(Move, Int)] = []
         for i in 0...20 {
+            var curr = generateRandomMove()
+            
             if i != 0 {
                 let prev = scramble[i - 1]
-                var curr = generateRandomMove()
+                curr = generateRandomMove()
                 
-                while prev.0.rawValue == curr.0.rawValue {
+                while true {
+                    if prev.0.rawValue != curr.0.rawValue {
+                        break
+                    }
+                    print(prev.0.rawValue)
                     curr = generateRandomMove()
                 }
             }
-            scramble.append(generateRandomMove())
+            scramble.append(curr)
         }
         
         

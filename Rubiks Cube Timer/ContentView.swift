@@ -34,7 +34,7 @@ struct ContentView: View {
     
     func average() -> String {
         if items.count == 0 {
-            return "Average: -"
+            return "-"
         }
         
         var average = 0.0
@@ -43,43 +43,51 @@ struct ContentView: View {
             average += i.time
         }
         
-        return "Average: \(String(average / Double(items.count)))"
+        return String(format: "%.2f", average / Double(items.count))
     }
     
     func ao5() -> String {
         if items.count < 5 {
-            return "Ao5: -"
+            return "-"
         }
         
         var average = 0.0
         
-        for i in 1...5 {
+        for i in 0..<5 {
             average += items[i].time
         }
         
-        return "Ao5: \(String(average / 5.0))"
+        return String(format: "%.2f", average / 5.0)
     }
     
     func ao12() -> String {
         if items.count < 12 {
-            return "Ao12: -"
+            return "-"
         }
         
         var average = 0.0
         
-        for i in 1...12 {
+        for i in 1..<12 {
             average += items[i].time
         }
         
-        return "Ao12: \(String(average / 12.0))"
+        return String(format: "%.2f", average / 12.0)
     }
     
     func best() -> String {
         if items.count == 0 {
-            return "Best: -"
+            return "-"
         }
         
-        return "Best: \(items.max())"
+        var max = Double.infinity
+        
+        for i in items {
+            if i.time < max {
+                max = i.time
+            }
+        }
+        
+        return String(format: "%.2f", max)
     }
 }
 

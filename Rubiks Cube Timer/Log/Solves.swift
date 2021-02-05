@@ -25,7 +25,7 @@ struct Solves: View {
                 .onDelete(perform: deleteItems)                
             }
             .navigationBarTitle("Solves")
-            .listStyle(GroupedListStyle())
+            .listStyle(InsetGroupedListStyle())
             //.environment(\.horizontalSizeClass, .regular)
 
         }

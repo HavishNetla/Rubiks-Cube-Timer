@@ -46,7 +46,7 @@ struct TimerView: View {
                     
                     flags.prevScramble = flags.scramble
                     flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
-                    
+                    print("here")
                     UIApplication.shared.isIdleTimerDisabled = false
                     addItem()
                 } else {
@@ -74,38 +74,47 @@ struct TimerView: View {
     
     var body: some View {
         let combined = delayPress.sequenced(before: longPress)
-        
-        VStack(alignment: .center, spacing: nil, content: {
-            HStack {
+        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom), content:{
+            VStack(alignment: .center, spacing: nil, content: {
+                HStack {
+                    Spacer()
+                    Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
+                    Spacer()
+                }
+                .padding(EdgeInsets(top: 100, leading: 20, bottom: 0, trailing: 20 ))
                 Spacer()
-                Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
-                Spacer()
-            }
-            .padding(EdgeInsets(top: 100, leading: 20, bottom: 0, trailing: 20 ))
-            Spacer()
 
-            HStack {
-                Spacer()
-                Text("\(timerManager.formatedTime())")
-                    .font(.system(size: 60))
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color.white)
+                HStack {
+                    Spacer()
+                    Text("\(timerManager.formatedTime())")
+                        .font(.system(size: 60))
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color.white)
 
+                    Spacer()
+                }.padding(.bottom, 100)
                 Spacer()
-            }.padding(.bottom, 100)
-            Spacer()
-        })
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        .background(
-            isLoading ? (flags.hasFinished ? Color.black : Color.red) :
-                (!flags.finishedLoading ? Color.black :
-                    (flags.hasStarted ? Color.black : Color.green)
-                )
-        )
-        .gesture(combined)
-        .edgesIgnoringSafeArea(.all)
-        .onAppear(perform: {
-            flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+            })
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+            .background(
+                isLoading ? (flags.hasFinished ? Color.black : Color.red) :
+                    (!flags.finishedLoading ? Color.black :
+                        (flags.hasStarted ? Color.black : Color.green)
+                    )
+            )
+            .gesture(combined)
+            .edgesIgnoringSafeArea(.all)
+            .onAppear(perform: {
+                flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+            })
+            
+            VStack(alignment: .leading) {
+                Text("Average: ").bold() + Text(average())
+                Text("Ao5: ").bold() + Text(ao5())
+                Text("Ao12: ").bold() + Text(ao12())
+                Text("Best: ").bold() + Text(best())
+            }.padding()
+            .padding(.bottom)
         })
     }
     
@@ -125,6 +134,64 @@ struct TimerView: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
+    }
+    
+    func average() -> String {
+        if items.count == 0 {
+            return "-"
+        }
+        
+        var average = 0.0
+        
+        for i in items {
+            average += i.time
+        }
+        
+        return String(format: "%.2f", average / Double(items.count))
+    }
+    
+    func ao5() -> String {
+        if items.count < 5 {
+            return "-"
+        }
+        
+        var average = 0.0
+        
+        for i in 0..<5 {
+            average += items[i].time
+        }
+        
+        return String(format: "%.2f", average / 5.0)
+    }
+    
+    func ao12() -> String {
+        if items.count < 12 {
+            return "-"
+        }
+        
+        var average = 0.0
+        
+        for i in 1..<12 {
+            average += items[i].time
+        }
+        
+        return String(format: "%.2f", average / 12.0)
+    }
+    
+    func best() -> String {
+        if items.count == 0 {
+            return "-"
+        }
+        
+        var max = Double.infinity
+        
+        for i in items {
+            if i.time < max {
+                max = i.time
+            }
+        }
+        
+        return String(format: "%.2f", max)
     }
 }
 
