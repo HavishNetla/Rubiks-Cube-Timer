@@ -19,7 +19,7 @@ class Flags: ObservableObject {
 
 struct TimerView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Solve.timestamp, ascending: true)],
         animation: .default)
@@ -27,12 +27,12 @@ struct TimerView: View {
     
     
     @ObservedObject var timerManager = TimerManager()
-    let generator = ScrambleGenerator()
-        
+    let generatorNew = Scrambler(moves: ["F", "B", "L", "R", "U", "D"], suffixes: ["2", "'"], len: 15)
+    
     @GestureState var isLoading = false
     @ObservedObject var flags = Flags()
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
-
+    
     var delayPress: some Gesture {
         LongPressGesture(minimumDuration: 0.5)
             .updating($isLoading) { currentState, gestureState, transaction in
@@ -45,7 +45,9 @@ struct TimerView: View {
                     timerManager.stop()
                     
                     flags.prevScramble = flags.scramble
-                    flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+                    // flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+                    
+                    flags.scramble = generatorNew.generateScramble()
                     print("here")
                     UIApplication.shared.isIdleTimerDisabled = false
                     addItem()
@@ -78,7 +80,12 @@ struct TimerView: View {
             VStack(alignment: .center, spacing: nil, content: {
                 HStack {
                     Spacer()
-                    Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
+                    VStack {
+                        Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
+                            .onTapGesture {
+                                flags.scramble = generatorNew.generateScramble()
+                            }
+                    }
                     Spacer()
                 }
                 .padding(EdgeInsets(top: 100, leading: 20, bottom: 0, trailing: 20 ))
@@ -105,7 +112,9 @@ struct TimerView: View {
             .gesture(combined)
             .edgesIgnoringSafeArea(.all)
             .onAppear(perform: {
-                flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+                //flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+                flags.scramble = generatorNew.generateScramble()
+
             })
             
             VStack(alignment: .leading) {
