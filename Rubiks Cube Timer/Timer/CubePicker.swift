@@ -8,24 +8,39 @@
 import SwiftUI
 
 struct CubePicker: View {
-    enum Cube: String, CaseIterable, Identifiable {
-        case c3x3
-        case c2x2
-        
-        var id: String { self.rawValue }
-    }
-    @State private var selectedCube = Cube.c3x3
-
+    @State var hourSelection = 0
+    @State var minuteSelection = 0
+    @State var secondSelection = 0
+    
+    var puzzles = ["2x2","3x3","4x4","5x5","6x6","7x7","Pyraminx","Megaminx","Skewb","Square 1"]
+    var sessions =  ["Default", "One Handed", "Roux"]
+    
     var body: some View {
-        Picker("Cube", selection: $selectedCube) {
-            Text("3x3").tag(Cube.c3x3)
-            Text("2x2").tag(Cube.c2x2)
-        }.pickerStyle(SegmentedPickerStyle())
+        GeometryReader { geometry in
+            HStack {
+                Picker(selection: self.$hourSelection, label: Text("")) {
+                    ForEach(0 ..< self.puzzles.count) { index in
+                        Text("\(self.puzzles[index])").tag(index)
+                    }
+                }
+                .frame(width: geometry.size.width/3)
+                .clipped()
+
+                Picker(selection: self.$minuteSelection, label: Text("")) {
+                    ForEach(0 ..< self.sessions.count) { index in
+                        Text("\(self.sessions[index])").tag(index)
+                    }
+                }
+                .frame(width: geometry.size.width*2/3)
+                .clipped()
+            }
+        }.padding()
     }
 }
-
 struct CubePicker_Previews: PreviewProvider {
     static var previews: some View {
-        CubePicker()
+        HStack {
+            CubePicker()
+        }.frame(width: 400, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
     }
 }

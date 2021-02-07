@@ -27,7 +27,7 @@ struct TimerView: View {
     
     
     @ObservedObject var timerManager = TimerManager()
-    let generatorNew = Scrambler(moves: ["F", "B", "L", "R", "U", "D"], suffixes: ["2", "'"], len: 15)
+    let generatorNew = Scrambler(moves: ["F", "B", "L", "R", "U", "D", "u", "d", "l", "r", "f", "b"], suffixes: ["2", "'"], len: 30)
     
     @GestureState var isLoading = false
     @ObservedObject var flags = Flags()
@@ -74,6 +74,8 @@ struct TimerView: View {
             })
     }
     
+    @State var showingDetail = false
+
     var body: some View {
         let combined = delayPress.sequenced(before: longPress)
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom), content:{
@@ -81,6 +83,17 @@ struct TimerView: View {
                 HStack {
                     Spacer()
                     VStack {
+                        Button(action: {
+                            self.showingDetail.toggle()
+                        }, label: {
+                            Text("Button")
+                        }).sheet(
+                            isPresented: self.$showingDetail,
+                        ) {
+                            CubePicker()
+                        }
+                        
+                        
                         Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
                             .onTapGesture {
                                 flags.scramble = generatorNew.generateScramble()
@@ -97,7 +110,6 @@ struct TimerView: View {
                         .font(.system(size: 60))
                         .fontWeight(.semibold)
                         .foregroundColor(Color.white)
-
                     Spacer()
                 }.padding(.bottom, 100)
                 Spacer()
@@ -126,7 +138,9 @@ struct TimerView: View {
             .padding(.bottom)
         })
     }
-    
+    func asd() {
+        print("asd")
+    }
     private func addItem() {
         withAnimation {
             let newItem = Solve(context: viewContext)

@@ -14,15 +14,17 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Solve.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Solve>
-    
+        
     var body: some View {
         VStack {
             TabView {
-                TimerView()
-                    .tabItem {
-                        Image(systemName: "timer")
-                        Text("Timer")
-                    }
+                ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top), content: {
+                    TimerView()
+                })
+                .tabItem {
+                    Image(systemName: "timer")
+                    Text("Timer")
+                }
                 Solves()
                     .tabItem {
                         Image(systemName: "folder")
@@ -88,6 +90,10 @@ struct ContentView: View {
         }
         
         return String(format: "%.2f", max)
+    }
+    
+    func asd() {
+        print("asd")
     }
 }
 
