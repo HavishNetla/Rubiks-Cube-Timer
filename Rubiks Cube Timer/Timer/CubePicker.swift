@@ -16,25 +16,28 @@ struct CubePicker: View {
     var sessions =  ["Default", "One Handed", "Roux"]
     
     var body: some View {
-        GeometryReader { geometry in
-            HStack {
-                Picker(selection: self.$hourSelection, label: Text("")) {
-                    ForEach(0 ..< self.puzzles.count) { index in
-                        Text("\(self.puzzles[index])").tag(index)
-                    }
+        //        GeometryReader { geometry in
+        VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+            Text("Cube").bold().font(.system(.title, design: .rounded))
+            Picker(selection: self.$hourSelection, label: Text("")) {
+                ForEach(0 ..< self.puzzles.count) { index in
+                    Text("\(self.puzzles[index])").tag(index)
                 }
-                .frame(width: geometry.size.width/3)
-                .clipped()
-
-                Picker(selection: self.$minuteSelection, label: Text("")) {
-                    ForEach(0 ..< self.sessions.count) { index in
-                        Text("\(self.sessions[index])").tag(index)
-                    }
+            }.frame(height: 100).clipped()
+            //                .frame(width: geometry.size.width/3)
+            //                .clipped()
+            //
+            Text("Session").bold().font(.system(.title, design: .rounded))
+            Picker(selection: self.$minuteSelection, label: Text("")) {
+                ForEach(0 ..< self.sessions.count) { index in
+                    Text("\(self.sessions[index])").tag(index)
                 }
-                .frame(width: geometry.size.width*2/3)
-                .clipped()
-            }
-        }.padding()
+            }.frame(height: 100).clipped()
+            //                .frame(width: geometry.size.width*2/3)
+            //                .clipped()
+            //            }.frame(height: 200)
+            //            .clipped()
+        }).padding()
     }
 }
 struct CubePicker_Previews: PreviewProvider {

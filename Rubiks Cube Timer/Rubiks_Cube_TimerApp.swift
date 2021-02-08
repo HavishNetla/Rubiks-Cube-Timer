@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 @main
 struct Rubiks_Cube_TimerApp: App {
@@ -13,8 +14,11 @@ struct Rubiks_Cube_TimerApp: App {
 
     var body: some Scene {
         WindowGroup {
+            let sheetManager: PartialSheetManager = PartialSheetManager()
+            
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(sheetManager)
 
         }
     }

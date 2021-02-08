@@ -7,7 +7,7 @@
 
 import SwiftUI
 import AudioToolbox
-
+import PartialSheet
 
 class Flags: ObservableObject {
     @Published var finishedLoading: Bool = false
@@ -19,7 +19,8 @@ class Flags: ObservableObject {
 
 struct TimerView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @EnvironmentObject var partialSheetManager: PartialSheetManager
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Solve.timestamp, ascending: true)],
         animation: .default)
@@ -83,17 +84,26 @@ struct TimerView: View {
                 HStack {
                     Spacer()
                     VStack {
+//                        Button(action: {
+//                            self.showingDetail.toggle()
+//                        }, label: {
+//                            Text("Button")
+//                        }).sheet(
+//                            isPresented: self.$showingDetail,
+//                        ) {
+//                            CubePicker()
+//                        }
+                        
                         Button(action: {
-                            self.showingDetail.toggle()
+                            self.partialSheetManager.showPartialSheet({
+                                print("Partial sheet dismissed")
+                            }) {
+                                
+                                CubePicker()
+                            }
                         }, label: {
-                            Text("Button")
-                        }).sheet(
-                            isPresented: self.$showingDetail,
-                        ) {
-                            CubePicker()
-                        }
-                        
-                        
+                            Text("Show sheet")
+                        })
                         Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
                             .onTapGesture {
                                 flags.scramble = generatorNew.generateScramble()

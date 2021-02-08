@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -20,6 +21,7 @@ struct ContentView: View {
             TabView {
                 ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top), content: {
                     TimerView()
+                        .addPartialSheet()
                 })
                 .tabItem {
                     Image(systemName: "timer")

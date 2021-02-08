@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		78540DF225C8A8C500D0FEE4 /* Rubiks_Cube_TimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DF125C8A8C500D0FEE4 /* Rubiks_Cube_TimerUITests.swift */; };
 		78540E0425C8AAC700D0FEE4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540E0325C8AAC700D0FEE4 /* TimerView.swift */; };
 		78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540E1125C8BE0800D0FEE4 /* TimerManager.swift */; };
+		785FB61725D1DD6D009EC3F6 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 785FB61625D1DD6D009EC3F6 /* PartialSheet */; };
 		787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */; };
 		787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677E725CB892300DF38A7 /* PersistenceController.swift */; };
 		787677F125CB9ADB00DF38A7 /* Solves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F025CB9ADB00DF38A7 /* Solves.swift */; };
@@ -72,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				785FB61725D1DD6D009EC3F6 /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +202,9 @@
 			dependencies = (
 			);
 			name = "Rubiks Cube Timer";
+			packageProductDependencies = (
+				785FB61625D1DD6D009EC3F6 /* PartialSheet */,
+			);
 			productName = "Rubiks Cube Timer";
 			productReference = 78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */;
 			productType = "com.apple.product-type.application";
@@ -271,6 +276,9 @@
 				Base,
 			);
 			mainGroup = 78540DC825C8A8C300D0FEE4;
+			packageReferences = (
+				785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+			);
 			productRefGroup = 78540DD225C8A8C300D0FEE4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -644,6 +652,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		785FB61625D1DD6D009EC3F6 /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */ = {
