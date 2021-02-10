@@ -19,11 +19,11 @@
 		78540E0425C8AAC700D0FEE4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540E0325C8AAC700D0FEE4 /* TimerView.swift */; };
 		78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540E1125C8BE0800D0FEE4 /* TimerManager.swift */; };
 		785FB61725D1DD6D009EC3F6 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 785FB61625D1DD6D009EC3F6 /* PartialSheet */; };
+		785FB61D25D20C55009EC3F6 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 785FB61C25D20C55009EC3F6 /* Neumorphic */; };
 		787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */; };
 		787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677E725CB892300DF38A7 /* PersistenceController.swift */; };
 		787677F125CB9ADB00DF38A7 /* Solves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F025CB9ADB00DF38A7 /* Solves.swift */; };
 		787677F925CB9B1100DF38A7 /* SolveRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F825CB9B1100DF38A7 /* SolveRow.swift */; };
-		78797C0F25CA218000D26C17 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78797C0E25CA218000D26C17 /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,6 @@
 		787677E725CB892300DF38A7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		787677F025CB9ADB00DF38A7 /* Solves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solves.swift; sourceTree = "<group>"; };
 		787677F825CB9B1100DF38A7 /* SolveRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveRow.swift; sourceTree = "<group>"; };
-		78797C0E25CA218000D26C17 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				785FB61D25D20C55009EC3F6 /* Neumorphic in Frameworks */,
 				785FB61725D1DD6D009EC3F6 /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,7 +162,6 @@
 				786C933025CB078F003470F3 /* Scramble */,
 				78540E0325C8AAC700D0FEE4 /* TimerView.swift */,
 				78540E1125C8BE0800D0FEE4 /* TimerManager.swift */,
-				78797C0E25CA218000D26C17 /* Test.swift */,
 				784070B625CD88D700DB81CA /* CubePicker.swift */,
 			);
 			path = Timer;
@@ -204,6 +203,7 @@
 			name = "Rubiks Cube Timer";
 			packageProductDependencies = (
 				785FB61625D1DD6D009EC3F6 /* PartialSheet */,
+				785FB61C25D20C55009EC3F6 /* Neumorphic */,
 			);
 			productName = "Rubiks Cube Timer";
 			productReference = 78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */;
@@ -278,6 +278,7 @@
 			mainGroup = 78540DC825C8A8C300D0FEE4;
 			packageReferences = (
 				785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				785FB61B25D20C55009EC3F6 /* XCRemoteSwiftPackageReference "neumorphic" */,
 			);
 			productRefGroup = 78540DD225C8A8C300D0FEE4 /* Products */;
 			projectDirPath = "";
@@ -326,7 +327,6 @@
 				78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */,
 				784070BC25CDBD3500DB81CA /* Scrambler.swift in Sources */,
 				787677F125CB9ADB00DF38A7 /* Solves.swift in Sources */,
-				78797C0F25CA218000D26C17 /* Test.swift in Sources */,
 				787677F925CB9B1100DF38A7 /* SolveRow.swift in Sources */,
 				78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */,
 				787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */,
@@ -662,6 +662,14 @@
 				minimumVersion = 2.1.11;
 			};
 		};
+		785FB61B25D20C55009EC3F6 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/costachung/neumorphic.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -669,6 +677,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
+		};
+		785FB61C25D20C55009EC3F6 /* Neumorphic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 785FB61B25D20C55009EC3F6 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			productName = Neumorphic;
 		};
 /* End XCSwiftPackageProductDependency section */
 

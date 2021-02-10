@@ -28,7 +28,7 @@ struct TimerView: View {
     
     
     @ObservedObject var timerManager = TimerManager()
-    let generatorNew = Scrambler(moves: ["F", "B", "L", "R", "U", "D", "u", "d", "l", "r", "f", "b"], suffixes: ["2", "'"], len: 30)
+    let generator = ScrambleGenerator()
     
     @GestureState var isLoading = false
     @ObservedObject var flags = Flags()
@@ -46,9 +46,8 @@ struct TimerView: View {
                     timerManager.stop()
                     
                     flags.prevScramble = flags.scramble
-                    // flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
                     
-                    flags.scramble = generatorNew.generateScramble()
+                    flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
                     print("here")
                     UIApplication.shared.isIdleTimerDisabled = false
                     addItem()
@@ -76,7 +75,12 @@ struct TimerView: View {
     }
     
     @State var showingDetail = false
-
+    
+    @State var puzzleSelection = 1;
+    @State var sessionSelection = 0;
+    
+    @State var currPuzzle: Puzzle = Puzzle.threebythree
+    
     var body: some View {
         let combined = delayPress.sequenced(before: longPress)
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom), content:{
@@ -97,21 +101,22 @@ struct TimerView: View {
                         Button(action: {
                             self.partialSheetManager.showPartialSheet({
                                 print("Partial sheet dismissed")
+                                flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
+                                //TODO: Check if cube actually changed then re do scramble otherwise keep it same
                             }) {
-                                
-                                CubePicker()
+                                CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
                             }
                         }, label: {
-                            Text("Show sheet")
+                            CubePickerButton(puzzle: puzzleSelection, session: sessionSelection).padding(.bottom)
                         })
                         Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
                             .onTapGesture {
-                                flags.scramble = generatorNew.generateScramble()
+                                flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
                             }
                     }
                     Spacer()
                 }
-                .padding(EdgeInsets(top: 100, leading: 20, bottom: 0, trailing: 20 ))
+                .padding(EdgeInsets(top: 75, leading: 20, bottom: 0, trailing: 20 ))
                 Spacer()
 
                 HStack {
@@ -134,9 +139,7 @@ struct TimerView: View {
             .gesture(combined)
             .edgesIgnoringSafeArea(.all)
             .onAppear(perform: {
-                //flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
-                flags.scramble = generatorNew.generateScramble()
-
+                flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
             })
             
             VStack(alignment: .leading) {
