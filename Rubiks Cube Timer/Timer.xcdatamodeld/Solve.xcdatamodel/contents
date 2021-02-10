@@ -6,11 +6,12 @@
     <entity name="Solve" representedClassName="Solve" syncable="YES" codeGenerationType="class">
         <attribute name="puzzle" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="scramble" optional="YES" attributeType="String"/>
+        <attribute name="session" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Solve" positionX="-63" positionY="-18" width="128" height="89"/>
         <element name="Session" positionX="-63" positionY="9" width="128" height="44"/>
+        <element name="Solve" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>

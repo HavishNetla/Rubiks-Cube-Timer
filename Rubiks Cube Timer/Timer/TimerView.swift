@@ -73,9 +73,7 @@ struct TimerView: View {
                 timerManager.start()
             })
     }
-    
-    @State var showingDetail = false
-    
+    @State var showSelector = false
     @State var puzzleSelection = 1;
     @State var sessionSelection = 0;
     
@@ -88,26 +86,13 @@ struct TimerView: View {
                 HStack {
                     Spacer()
                     VStack {
-//                        Button(action: {
-//                            self.showingDetail.toggle()
-//                        }, label: {
-//                            Text("Button")
-//                        }).sheet(
-//                            isPresented: self.$showingDetail,
-//                        ) {
-//                            CubePicker()
-//                        }
-                        
-                        Button(action: {
-                            self.partialSheetManager.showPartialSheet({
-                                print("Partial sheet dismissed")
-                                flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
-                                //TODO: Check if cube actually changed then re do scramble otherwise keep it same
-                            }) {
+                        Button(action: {showSelector.toggle()}, label: {
+                            CubePickerButton(puzzle: Int(puzzleSelection), session: sessionSelection).padding(.bottom)
+                        }).sheet(isPresented: $showSelector, content: {
+                            VStack {
                                 CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
+                                SessionSelector()
                             }
-                        }, label: {
-                            CubePickerButton(puzzle: puzzleSelection, session: sessionSelection).padding(.bottom)
                         })
                         Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
                             .onTapGesture {
@@ -160,7 +145,8 @@ struct TimerView: View {
             newItem.timestamp = Date()
             newItem.time = timerManager.elapsed
             newItem.scramble = flags.prevScramble
-            
+            newItem.puzzle = Int32(puzzleSelection)
+
             do {
                 try viewContext.save()
             } catch {

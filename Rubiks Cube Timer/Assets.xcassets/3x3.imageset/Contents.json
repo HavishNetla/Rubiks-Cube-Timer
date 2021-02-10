@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Group 1.svg",
+      "filename" : "3x3.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "Group 1-2.svg",
+      "filename" : "3x3-1.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -23,7 +23,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Group 1-1.svg",
+      "filename" : "3x3-2.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

@@ -6,28 +6,44 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct Solves: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var partialSheetManager: PartialSheetManager
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Solve.timestamp, ascending: false)],
         animation: .default)
     private var items: FetchedResults<Solve>
     
+    
+    @State var puzzle: Int = 0
+    @State var session: Int = 0
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    SolveRow(time: item.time, scramble: item.scramble ?? "ops", date: item.timestamp!)
-
+            VStack {
+                Button(action: {
+                    self.partialSheetManager.showPartialSheet({
+                        print("Partial sheet dismissed", puzzle)
+                    }) {
+                        CubePicker(puzzleSelection: $puzzle, sessionSelection: $session)
+                    }
+                }, label: {
+                    CubePickerButton(puzzle: Int(puzzle), session: session).padding(.bottom)
+                })
+                
+                List {
+                    ForEach(items) { item in
+                        SolveRow(time: item.time, scramble: item.scramble ?? "ops", date: item.timestamp!, puzzle: Puzzle(rawValue: item.puzzle)!)
+                    }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)                
+                .navigationBarTitle("Solves")
+                .listStyle(InsetGroupedListStyle())
+                //.environment(\.horizontalSizeClass, .regular)
             }
-            .navigationBarTitle("Solves")
-            .listStyle(InsetGroupedListStyle())
-            //.environment(\.horizontalSizeClass, .regular)
-
         }
     }
     
