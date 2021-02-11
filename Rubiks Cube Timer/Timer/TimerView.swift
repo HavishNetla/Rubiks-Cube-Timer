@@ -8,6 +8,7 @@
 import SwiftUI
 import AudioToolbox
 import PartialSheet
+import SSToastMessage
 
 class Flags: ObservableObject {
     @Published var finishedLoading: Bool = false
@@ -20,7 +21,7 @@ class Flags: ObservableObject {
 struct TimerView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var partialSheetManager: PartialSheetManager
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Solve.timestamp, ascending: true)],
         animation: .default)
@@ -83,27 +84,28 @@ struct TimerView: View {
         let combined = delayPress.sequenced(before: longPress)
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom), content:{
             VStack(alignment: .center, spacing: nil, content: {
-                HStack {
-                    Spacer()
-                    VStack {
-                        Button(action: {showSelector.toggle()}, label: {
-                            CubePickerButton(puzzle: Int(puzzleSelection), session: sessionSelection).padding(.bottom)
-                        }).sheet(isPresented: $showSelector, content: {
-                            VStack {
-                                CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
-                                SessionSelector()
-                            }
-                        })
-                        Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
-                            .onTapGesture {
-                                flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
-                            }
-                    }
-                    Spacer()
+                VStack {
+                    Button(action: {
+                        self.partialSheetManager.showPartialSheet({
+                            print("Partial sheet dismissed", puzzleSelection)
+                        }) {
+                            CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
+                        }
+                    }, label: {
+                        CubePickerButton(puzzle: Int(puzzleSelection), session: sessionSelection).padding(.bottom)
+                    })
+                    
+                    Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
+                        .onTapGesture {
+                            flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
+                        }
                 }
+                
                 .padding(EdgeInsets(top: 75, leading: 20, bottom: 0, trailing: 20 ))
                 Spacer()
-
+                
+                
+                
                 HStack {
                     Spacer()
                     Text("\(timerManager.formatedTime())")
@@ -116,10 +118,10 @@ struct TimerView: View {
             })
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             .background(
-                isLoading ? (flags.hasFinished ? Color.black : Color.red) :
+                !showSelector ? (isLoading ? (flags.hasFinished ? Color.black : Color.red) :
                     (!flags.finishedLoading ? Color.black :
                         (flags.hasStarted ? Color.black : Color.green)
-                    )
+                    )) : Color.black
             )
             .gesture(combined)
             .edgesIgnoringSafeArea(.all)
@@ -134,7 +136,9 @@ struct TimerView: View {
                 Text("Best: ").bold() + Text(best())
             }.padding()
             .padding(.bottom)
-        })
+        }).present(isPresented: $showSelector, type: .alert, position: .top, autohideDuration: Double.infinity, closeOnTapOutside: true) {
+            CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
+        }
     }
     func asd() {
         print("asd")
@@ -146,7 +150,7 @@ struct TimerView: View {
             newItem.time = timerManager.elapsed
             newItem.scramble = flags.prevScramble
             newItem.puzzle = Int32(puzzleSelection)
-
+            
             do {
                 try viewContext.save()
             } catch {

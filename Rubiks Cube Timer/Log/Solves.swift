@@ -11,7 +11,7 @@ import PartialSheet
 struct Solves: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var partialSheetManager: PartialSheetManager
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Solve.timestamp, ascending: false)],
         animation: .default)
@@ -22,35 +22,32 @@ struct Solves: View {
     @State var session: Int = 0
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Button(action: {
-                    self.partialSheetManager.showPartialSheet({
-                        print("Partial sheet dismissed", puzzle)
-                    }) {
-                        CubePicker(puzzleSelection: $puzzle, sessionSelection: $session)
-                    }
-                }, label: {
-                    CubePickerButton(puzzle: Int(puzzle), session: session).padding(.bottom)
-                })
-                
-                List {
-                    ForEach(items) { item in
-                        SolveRow(time: item.time, scramble: item.scramble ?? "ops", date: item.timestamp!, puzzle: Puzzle(rawValue: item.puzzle)!)
-                    }
-                    .onDelete(perform: deleteItems)
+        
+        VStack {
+            Button(action: {
+                self.partialSheetManager.showPartialSheet({
+                    print("Partial sheet dismissed", puzzle)
+                }) {
+                    CubePicker(puzzleSelection: $puzzle, sessionSelection: $session)
                 }
-                .navigationBarTitle("Solves")
-                .listStyle(InsetGroupedListStyle())
-                //.environment(\.horizontalSizeClass, .regular)
+            }, label: {
+                CubePickerButton(puzzle: Int(puzzle), session: session).padding(.bottom)
+            }).padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0 ))
+            
+            List {
+                ForEach(items) { item in
+                    SolveRow(time: item.time, scramble: item.scramble ?? "ops", date: item.timestamp!, puzzle: Puzzle(rawValue: item.puzzle)!)
+                }
+                .onDelete(perform: deleteItems)
             }
+            
         }
     }
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {

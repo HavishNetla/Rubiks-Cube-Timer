@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct Ingredient{
-        var id = UUID()
-        var name: String
-        var isSelected: Bool = false
+    var id = UUID()
+    var name: String
+    var isSelected: Bool = false
 }
 
 struct SessionSelector: View {
@@ -23,25 +23,35 @@ struct SessionSelector: View {
     @State var selected = 0
     
     var body: some View {
-        List{
-            ForEach(0..<list.count){ index in
-                HStack {
-                    Button(action: {
-                        selected = index
-                    }) {
-                        HStack{
-                            if index == selected {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.blue)
-                                    .animation(.easeIn)
-                            } else {
-                                Image(systemName: "circle")
-                                    .foregroundColor(.primary)
-                                    .animation(.easeOut)
+        VStack {
+            HStack {
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Image(systemName: "plus.circle")
+                        .foregroundColor(.blue)
+                        .animation(.easeIn)
+                    Text("Add new")
+                })
+            }
+            List{
+                ForEach(0..<list.count){ index in
+                    HStack {
+                        Button(action: {
+                            selected = index
+                        }) {
+                            HStack{
+                                if index == selected {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.blue)
+                                        .animation(.easeIn)
+                                } else {
+                                    Image(systemName: "circle")
+                                        .foregroundColor(.primary)
+                                        .animation(.easeOut)
+                                }
+                                Text(list[index])
                             }
-                            Text(list[index])
-                        }
-                    }.buttonStyle(BorderlessButtonStyle())
+                        }.buttonStyle(BorderlessButtonStyle())
+                    }
                 }
             }
         }

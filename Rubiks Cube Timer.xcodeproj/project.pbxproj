@@ -12,6 +12,11 @@
 		784070C725CDC75500DB81CA /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784070C625CDC75500DB81CA /* ScrambleGenerator.swift */; };
 		78458D5D25D456ED0064DDBB /* CubePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D5C25D456ED0064DDBB /* CubePickerButton.swift */; };
 		78458D6225D474EA0064DDBB /* SessionSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D6125D474EA0064DDBB /* SessionSelector.swift */; };
+		78458D7425D48F3F0064DDBB /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D7325D48F3F0064DDBB /* PopupView */; };
+		78458D7A25D49A0C0064DDBB /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D7925D49A0C0064DDBB /* BLTNBoard */; };
+		78458D8025D49DB30064DDBB /* SSToastMessage in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D7F25D49DB30064DDBB /* SSToastMessage */; };
+		78458D8625D4AD0E0064DDBB /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D8525D4AD0E0064DDBB /* GraphView.swift */; };
+		78458D8F25D4AD2A0064DDBB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D8E25D4AD2A0064DDBB /* SwiftUICharts */; };
 		78540DD525C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DD425C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift */; };
 		78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DD625C8A8C300D0FEE4 /* ContentView.swift */; };
 		78540DD925C8A8C500D0FEE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78540DD825C8A8C500D0FEE4 /* Assets.xcassets */; };
@@ -51,6 +56,7 @@
 		784070C625CDC75500DB81CA /* ScrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGenerator.swift; sourceTree = "<group>"; };
 		78458D5C25D456ED0064DDBB /* CubePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePickerButton.swift; sourceTree = "<group>"; };
 		78458D6125D474EA0064DDBB /* SessionSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSelector.swift; sourceTree = "<group>"; };
+		78458D8525D4AD0E0064DDBB /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rubiks Cube Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78540DD425C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubiks_Cube_TimerApp.swift; sourceTree = "<group>"; };
 		78540DD625C8A8C300D0FEE4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78458D7425D48F3F0064DDBB /* PopupView in Frameworks */,
+				78458D7A25D49A0C0064DDBB /* BLTNBoard in Frameworks */,
+				78458D8025D49DB30064DDBB /* SSToastMessage in Frameworks */,
+				78458D8F25D4AD2A0064DDBB /* SwiftUICharts in Frameworks */,
 				785FB61D25D20C55009EC3F6 /* Neumorphic in Frameworks */,
 				785FB61725D1DD6D009EC3F6 /* PartialSheet in Frameworks */,
 			);
@@ -98,6 +108,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78458D6625D48E3F0064DDBB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		78458D8425D4AD040064DDBB /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				78458D8525D4AD0E0064DDBB /* GraphView.swift */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
 		78540DC825C8A8C300D0FEE4 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +146,8 @@
 		78540DD325C8A8C300D0FEE4 /* Rubiks Cube Timer */ = {
 			isa = PBXGroup;
 			children = (
+				78458D8425D4AD040064DDBB /* Graph */,
+				78458D6625D48E3F0064DDBB /* Utils */,
 				787677EF25CB9AC900DF38A7 /* Log */,
 				78540E0225C8A9D900D0FEE4 /* Timer */,
 				78540DD425C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift */,
@@ -210,6 +237,10 @@
 			packageProductDependencies = (
 				785FB61625D1DD6D009EC3F6 /* PartialSheet */,
 				785FB61C25D20C55009EC3F6 /* Neumorphic */,
+				78458D7325D48F3F0064DDBB /* PopupView */,
+				78458D7925D49A0C0064DDBB /* BLTNBoard */,
+				78458D7F25D49DB30064DDBB /* SSToastMessage */,
+				78458D8E25D4AD2A0064DDBB /* SwiftUICharts */,
 			);
 			productName = "Rubiks Cube Timer";
 			productReference = 78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */;
@@ -285,6 +316,10 @@
 			packageReferences = (
 				785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 				785FB61B25D20C55009EC3F6 /* XCRemoteSwiftPackageReference "neumorphic" */,
+				78458D7225D48F3F0064DDBB /* XCRemoteSwiftPackageReference "PopupView" */,
+				78458D7825D49A0C0064DDBB /* XCRemoteSwiftPackageReference "BulletinBoard" */,
+				78458D7E25D49DB30064DDBB /* XCRemoteSwiftPackageReference "SSToastMessage" */,
+				78458D8D25D4AD2A0064DDBB /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 78540DD225C8A8C300D0FEE4 /* Products */;
 			projectDirPath = "";
@@ -337,6 +372,7 @@
 				787677F925CB9B1100DF38A7 /* SolveRow.swift in Sources */,
 				78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */,
 				787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */,
+				78458D8625D4AD0E0064DDBB /* GraphView.swift in Sources */,
 				784070C725CDC75500DB81CA /* ScrambleGenerator.swift in Sources */,
 				78540DD525C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift in Sources */,
 				787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */,
@@ -662,6 +698,38 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		78458D7225D48F3F0064DDBB /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.11;
+			};
+		};
+		78458D7825D49A0C0064DDBB /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexisakers/BulletinBoard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		78458D7E25D49DB30064DDBB /* XCRemoteSwiftPackageReference "SSToastMessage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimformSolutionsPvtLtd/SSToastMessage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		78458D8D25D4AD2A0064DDBB /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
 		785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
@@ -681,6 +749,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		78458D7325D48F3F0064DDBB /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78458D7225D48F3F0064DDBB /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+		78458D7925D49A0C0064DDBB /* BLTNBoard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78458D7825D49A0C0064DDBB /* XCRemoteSwiftPackageReference "BulletinBoard" */;
+			productName = BLTNBoard;
+		};
+		78458D7F25D49DB30064DDBB /* SSToastMessage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78458D7E25D49DB30064DDBB /* XCRemoteSwiftPackageReference "SSToastMessage" */;
+			productName = SSToastMessage;
+		};
+		78458D8E25D4AD2A0064DDBB /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78458D8D25D4AD2A0064DDBB /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
 		785FB61625D1DD6D009EC3F6 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */;

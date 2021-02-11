@@ -14,7 +14,7 @@ let columns = [
     GridItem(.flexible()),
     GridItem(.flexible()),
     GridItem(.flexible()),
-    GridItem(.flexible()),
+    //GridItem(.flexible()),
 ]
 
 struct CubePicker: View {
@@ -33,9 +33,11 @@ struct CubePicker: View {
                         Text(puzzles[item]).bold()
                     }
                     .padding(.bottom)
+                    //.background(puzzleSelection == item ? Color.init(hex: 0xabb3ff) : Color.black.opacity(0.0))
                 })
             }
-        }).padding().cornerRadius(15)
+        })
+        .padding()
     }
 }
 

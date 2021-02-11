@@ -28,8 +28,15 @@ struct ContentView: View {
                     Text("Timer")
                 }
                 Solves()
+                    .addPartialSheet()
                     .tabItem {
                         Image(systemName: "folder")
+                        Text("Solves")
+                    }
+                GraphView()
+                    .addPartialSheet()
+                    .tabItem {
+                        Image(systemName: "chart.bar")
                         Text("Solves")
                     }
             }
