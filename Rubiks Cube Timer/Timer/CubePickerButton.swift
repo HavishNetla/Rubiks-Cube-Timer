@@ -6,25 +6,64 @@
 //
 
 import SwiftUI
+import SwiftEntryKit
 
 struct CubePickerButton: View {
     var puzzle: Int
     var session: Int
     
+    @State var a = false
+    
+    @State var puzzleSelection = 0
+    @State var sessionSelection = 0
+    
+    let customView = UIView()
+    
     var body: some View {
-        HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
-            Text("Puzzle: ").bold().foregroundColor(.white) +
-                Text(puzzles[puzzle]).foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            
-            Text("Session: ").bold().foregroundColor(.white) +
-                Text(sessions[session]).foregroundColor(.orange)
+        HStack(alignment: .center, spacing: nil, content: {
+            HStack {
+                Button(action: {
+                    print("Edit button was tapped")
+                    a.toggle()
+                }) {
+                    Image(systemName: "gear").scaleEffect(1.25)
+                }.sheet(isPresented: $a) {
+                    NavigationView {
+                        VStack {
+                            CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection).padding(.top)
+                            SessionSelector(puzzle: Puzzle.threebythree)
+                        }
+                        .navigationBarTitle(Text("Puzzle/Session Selector"), displayMode: .inline)
+                        .navigationBarItems(trailing: Button(action: {
+                            print("Dismissing sheet view...")
+                            self.a = false
+                        }) {
+                            Text("Done").bold()
+                        })
+                    }
+                }
+                
+                Spacer()
+                VStack {
+                    Text(puzzles[puzzle]).bold()
+                    Text(sessions[session]).font(.caption).foregroundColor(Color.secondary)
+                }
+                Spacer()
+                Button(action: {
+                    SwiftEntryKit.display(entry: UIButton(), using: EKAttributes())
+                }) {
+                    Image(systemName: "square.on.circle").scaleEffect(1.25)
+                }
+            }
         })
-        .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
-        .cornerRadius(2000.0)
+        .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
+        .cornerRadius(12.0)
         .overlay(
-            RoundedRectangle(cornerRadius: 2000)
+            RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.gray, lineWidth: 1)
-        )
+        ).onAppear(perform: {
+            
+        })
     }
     
     func enumToString(p: Puzzle) -> String {
@@ -64,3 +103,10 @@ extension Color {
         )
     }
 }
+
+struct CubePickerButton_Previews: PreviewProvider {
+    static var previews: some View {
+        CubePickerButton(puzzle: 0, session: 0)
+    }
+}
+

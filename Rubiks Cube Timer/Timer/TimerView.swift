@@ -74,7 +74,6 @@ struct TimerView: View {
                 timerManager.start()
             })
     }
-    @State var showSelector = false
     @State var puzzleSelection = 1;
     @State var sessionSelection = 0;
     
@@ -82,63 +81,34 @@ struct TimerView: View {
     
     var body: some View {
         let combined = delayPress.sequenced(before: longPress)
-        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom), content:{
-            VStack(alignment: .center, spacing: nil, content: {
-                VStack {
-                    Button(action: {
-                        self.partialSheetManager.showPartialSheet({
-                            print("Partial sheet dismissed", puzzleSelection)
-                        }) {
-                            CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
-                        }
-                    }, label: {
-                        CubePickerButton(puzzle: Int(puzzleSelection), session: sessionSelection).padding(.bottom)
-                    })
-                    
-                    Text(flags.scramble).font(.title2).fontWeight(.medium).foregroundColor(.white).multilineTextAlignment(.center)
-                        .onTapGesture {
-                            flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
-                        }
-                }
-                
-                .padding(EdgeInsets(top: 75, leading: 20, bottom: 0, trailing: 20 ))
+        ZStack {
+            VStack {
+                CubePickerButton(puzzle: puzzleSelection, session: sessionSelection).padding(.top)
+                Text(flags.scramble).font(.title2).fontWeight(.medium).multilineTextAlignment(.center).padding(.top)
+                    .onTapGesture {
+                        flags.scramble = generator.generateScramble(puzzle: .threebythree)
+                    }
+
                 Spacer()
-                
-                
                 
                 HStack {
-                    Spacer()
-                    Text("\(timerManager.formatedTime())")
-                        .font(.system(size: 60))
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color.white)
-                    Spacer()
-                }.padding(.bottom, 100)
-                Spacer()
-            })
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-            .background(
-                !showSelector ? (isLoading ? (flags.hasFinished ? Color.black : Color.red) :
-                    (!flags.finishedLoading ? Color.black :
-                        (flags.hasStarted ? Color.black : Color.green)
-                    )) : Color.black
-            )
-            .gesture(combined)
-            .edgesIgnoringSafeArea(.all)
-            .onAppear(perform: {
-                flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
-            })
+                    //Spacer()
+                    StatsView(items: items).padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 30))
+                }.padding(.bottom)
+            }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             
-            VStack(alignment: .leading) {
-                Text("Average: ").bold() + Text(average())
-                Text("Ao5: ").bold() + Text(ao5())
-                Text("Ao12: ").bold() + Text(ao12())
-                Text("Best: ").bold() + Text(best())
-            }.padding()
-            .padding(.bottom)
-        }).present(isPresented: $showSelector, type: .alert, position: .top, autohideDuration: Double.infinity, closeOnTapOutside: true) {
-            CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
-        }
+            Spacer()
+            
+            Text("\(timerManager.formatedTime())")
+                .font(.system(size: 60))
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+            Spacer()
+            
+        }.onAppear(perform: {
+            //flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+            flags.scramble = generator.generateScramble(puzzle: .threebythree)
+        })
     }
     func asd() {
         print("asd")
@@ -161,47 +131,80 @@ struct TimerView: View {
             }
         }
     }
+}
+
+struct StatsView: View {
+    var items: FetchedResults<Solve>
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Deviation: ").bold() + Text(deviation())
+                Text("Mean: ").bold() + Text(mean())
+                Text("Best: ").bold() + Text(best())
+                Text("Count: ").bold() + Text(count())
+            }
+            
+            Spacer()
+            
+            VStack(alignment: .leading) {
+                Text("Ao5: ").bold() + Text(averageOf(count: 5))
+                Text("Ao12: ").bold() + Text(averageOf(count: 12))
+                Text("Ao50: ").bold() + Text(averageOf(count: 50))
+                Text("Ao100: ").bold() + Text(averageOf(count: 100))
+            }
+        }
+    }
+    func count() -> String {
+        return String(items.count)
+    }
     
-    func average() -> String {
+    func mean() -> String {
         if items.count == 0 {
             return "-"
         }
         
         var average = 0.0
         
-        for i in items {
-            average += i.time
+        for i in 0..<items.count {
+            average += items[i].time
         }
         
         return String(format: "%.2f", average / Double(items.count))
     }
     
-    func ao5() -> String {
-        if items.count < 5 {
+    func deviation() -> String {
+        if items.count == 0 {
             return "-"
         }
         
         var average = 0.0
         
-        for i in 0..<5 {
+        for i in 0..<items.count {
             average += items[i].time
         }
         
-        return String(format: "%.2f", average / 5.0)
+        var newAvg = 0.0
+        for i in items {
+            newAvg += pow((average - i.time), 2.0)
+        }
+        
+        
+        return String(format: "%.2f", sqrt(newAvg / Double(items.count)))
+
     }
     
-    func ao12() -> String {
-        if items.count < 12 {
+    func averageOf(count: Int) -> String {
+        if items.count < count {
             return "-"
         }
         
         var average = 0.0
         
-        for i in 1..<12 {
+        for i in 0..<count {
             average += items[i].time
         }
         
-        return String(format: "%.2f", average / 12.0)
+        return String(format: "%.2f", average / Double(count))
     }
     
     func best() -> String {
@@ -218,6 +221,22 @@ struct TimerView: View {
         }
         
         return String(format: "%.2f", max)
+    }
+    
+    func worst() -> String {
+        if items.count == 0 {
+            return "-"
+        }
+        
+        var min = 0.0
+        
+        for i in items {
+            if i.time > min {
+                min = i.time
+            }
+        }
+        
+        return String(format: "%.2f", min)
     }
 }
 
