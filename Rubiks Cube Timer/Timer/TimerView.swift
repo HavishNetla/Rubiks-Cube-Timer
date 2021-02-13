@@ -81,38 +81,58 @@ struct TimerView: View {
     
     var body: some View {
         let combined = delayPress.sequenced(before: longPress)
-        ZStack {
-            VStack {
-                CubePickerButton(puzzle: puzzleSelection, session: sessionSelection).padding(.top)
-                Text(flags.scramble).font(.title2).fontWeight(.medium).multilineTextAlignment(.center).padding(.top)
-                    .onTapGesture {
-                        flags.scramble = generator.generateScramble(puzzle: .threebythree)
-                    }
-
+        HStack {
+            ZStack {
+                VStack {
+                    CubePickerButton(puzzle: puzzleSelection, session: sessionSelection).padding(.top)
+                    Text(flags.scramble).font(.title2).fontWeight(.medium).multilineTextAlignment(.center).padding(.top)
+                        .onTapGesture {
+                            flags.scramble = generator.generateScramble(puzzle: .threebythree)
+                        }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        //Spacer()
+                        StatsView(items: items).padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 30))
+                    }.padding(.bottom)
+                }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                
                 Spacer()
                 
-                HStack {
-                    //Spacer()
-                    StatsView(items: items).padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 30))
-                }.padding(.bottom)
-            }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-            
-            Spacer()
-            
-            Text("\(timerManager.formatedTime())")
-                .font(.system(size: 60))
-                .fontWeight(.semibold)
-                .multilineTextAlignment(.center)
-            Spacer()
-            
-        }.onAppear(perform: {
-            //flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
-            flags.scramble = generator.generateScramble(puzzle: .threebythree)
-        })
+                Text("\(timerManager.formatedTime())")
+                    .font(.system(size: 60))
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(
+                        isLoading ? (flags.hasFinished ? Color.primary : Color.red) :
+                            (!flags.finishedLoading ? Color.primary :
+                                (flags.hasStarted ? Color.primary : Color.green)
+                            )
+                    )
+                Spacer()
+                
+            }
+            .onAppear(perform: {
+                //flags.scramble = generator.formatScramble(scramble: generator.generateScramble())
+                flags.scramble = generator.generateScramble(puzzle: .threebythree)
+            })
+//            .background(
+//                isLoading ? (flags.hasFinished ? Color.clear : Color.red) :
+//                    (!flags.finishedLoading ? Color.clear :
+//                        (flags.hasStarted ? Color.clear : Color.green)
+//                    )
+//            )
+        }
+        .contentShape(Rectangle())
+        .background(Color.gray.opacity(0.0))
+        .gesture(combined)
     }
+    
     func asd() {
         print("asd")
     }
+    
     private func addItem() {
         withAnimation {
             let newItem = Solve(context: viewContext)
@@ -190,7 +210,7 @@ struct StatsView: View {
         
         
         return String(format: "%.2f", sqrt(newAvg / Double(items.count)))
-
+        
     }
     
     func averageOf(count: Int) -> String {

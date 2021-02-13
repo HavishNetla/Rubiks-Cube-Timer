@@ -11,12 +11,14 @@ import SwiftEntryKit
 struct CubePickerButton: View {
     var puzzle: Int
     var session: Int
-    
-    @State var a = false
-    
+    let puzzles = ["2x2","3x3","4x4","5x5","6x6","7x7","Pyraminx","Megaminx","Skewb","Square 1"]
+
+    @State var sessionSheet = false
+    @State var puzzleSheet = false
+
     @State var puzzleSelection = 0
-    @State var sessionSelection = 0
-    
+    @State var sessionSelection = "Default"
+
     let customView = UIView()
     
     var body: some View {
@@ -24,30 +26,44 @@ struct CubePickerButton: View {
             HStack {
                 Button(action: {
                     print("Edit button was tapped")
-                    a.toggle()
+                    sessionSheet.toggle()
                 }) {
                     Image(systemName: "gear").scaleEffect(1.25)
-                }.sheet(isPresented: $a) {
+                }.sheet(isPresented: $sessionSheet) {
                     NavigationView {
-                        VStack {
-                            CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection).padding(.top)
-                            SessionSelector(puzzle: Puzzle.threebythree)
-                        }
-                        .navigationBarTitle(Text("Puzzle/Session Selector"), displayMode: .inline)
-                        .navigationBarItems(trailing: Button(action: {
-                            print("Dismissing sheet view...")
-                            self.a = false
-                        }) {
-                            Text("Done").bold()
-                        })
+                        // items[index].name
+                        SessionSelector(puzzle: Puzzle.init(rawValue: Int32(puzzle))!, selectedSession: $sessionSelection)
+                            .navigationBarTitle(Text("Session Selector"), displayMode: .inline)
+                            .navigationBarItems(trailing: Button(action: {
+                                print("Dismissing sheet view...")
+                                self.sessionSheet = false
+                            }) {
+                                Text("Done").bold()
+                            })
                     }
                 }
                 
                 Spacer()
-                VStack {
-                    Text(puzzles[puzzle]).bold()
-                    Text(sessions[session]).font(.caption).foregroundColor(Color.secondary)
+                Button(action: {
+                    puzzleSheet.toggle()
+                }, label: {
+                    VStack {
+                        Text(puzzles[puzzleSelection]).bold().foregroundColor(Color.primary)
+                        Text(sessionSelection).font(.caption).foregroundColor(Color.secondary)
+                    }
+                }).sheet(isPresented: $puzzleSheet) {
+                    NavigationView {
+                        CubePicker(puzzleSelection: $puzzleSelection).padding(.top)
+                            .navigationBarTitle(Text("Puzzle Selector"), displayMode: .inline)
+                            .navigationBarItems(trailing: Button(action: {
+                                print("Dismissing sheet view...")
+                                self.puzzleSheet = false
+                            }) {
+                                Text("Done").bold()
+                            })
+                    }
                 }
+                
                 Spacer()
                 Button(action: {
                     SwiftEntryKit.display(entry: UIButton(), using: EKAttributes())

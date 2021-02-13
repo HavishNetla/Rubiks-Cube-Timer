@@ -30,7 +30,7 @@ struct GraphView: View {
                 self.partialSheetManager.showPartialSheet({
                     print("Partial sheet dismissed", puzzleSelection)
                 }) {
-                    CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
+                    CubePicker(puzzleSelection: $puzzleSelection)
                 }
             }, label: {
                 CubePickerButton(puzzle: Int(puzzleSelection), session: sessionSelection).padding(.bottom)
@@ -42,7 +42,7 @@ struct GraphView: View {
                 .padding()
                 .padding(.top)
         }.present(isPresented: $showSelector, type: .alert, position: .top, autohideDuration: Double.infinity, closeOnTapOutside: true) {
-            CubePicker(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
+            CubePicker(puzzleSelection: $puzzleSelection)
         }
 
         // legend is optional, use optional .padding()

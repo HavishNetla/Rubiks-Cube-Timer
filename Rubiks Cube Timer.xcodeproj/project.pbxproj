@@ -35,6 +35,8 @@
 		7857B90125D724760049BA54 /* Rubiks_Cube_Timer_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7857B8FD25D724750049BA54 /* Rubiks_Cube_Timer_Widget.intentdefinition */; };
 		7857B90225D724760049BA54 /* Rubiks_Cube_Timer_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7857B8FD25D724750049BA54 /* Rubiks_Cube_Timer_Widget.intentdefinition */; };
 		7857B90525D724760049BA54 /* Rubiks Cube Timer WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7857B8F425D724750049BA54 /* Rubiks Cube Timer WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7857B90F25D72E7B0049BA54 /* Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */; };
+		7857B91525D730830049BA54 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7857B91425D730830049BA54 /* CoreDataHelper.swift */; };
 		785FB61725D1DD6D009EC3F6 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 785FB61625D1DD6D009EC3F6 /* PartialSheet */; };
 		785FB61D25D20C55009EC3F6 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 785FB61C25D20C55009EC3F6 /* Neumorphic */; };
 		787677E025CB887700DF38A7 /* Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */; };
@@ -111,6 +113,7 @@
 		7857B8FD25D724750049BA54 /* Rubiks_Cube_Timer_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Rubiks_Cube_Timer_Widget.intentdefinition; sourceTree = "<group>"; };
 		7857B8FE25D724760049BA54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7857B90025D724760049BA54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7857B91425D730830049BA54 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		787677DF25CB887700DF38A7 /* Solve.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Solve.xcdatamodel; sourceTree = "<group>"; };
 		787677E725CB892300DF38A7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		787677F025CB9ADB00DF38A7 /* Solves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solves.swift; sourceTree = "<group>"; };
@@ -185,6 +188,7 @@
 		78540DC825C8A8C300D0FEE4 = {
 			isa = PBXGroup;
 			children = (
+				7857B90E25D72DE30049BA54 /* Shared */,
 				78540DD325C8A8C300D0FEE4 /* Rubiks Cube Timer */,
 				78540DE525C8A8C500D0FEE4 /* Rubiks Cube TimerTests */,
 				78540DF025C8A8C500D0FEE4 /* Rubiks Cube TimerUITests */,
@@ -217,7 +221,6 @@
 				78540DD825C8A8C500D0FEE4 /* Assets.xcassets */,
 				78540DDD25C8A8C500D0FEE4 /* Info.plist */,
 				78540DDA25C8A8C500D0FEE4 /* Preview Content */,
-				787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */,
 				787677E725CB892300DF38A7 /* PersistenceController.swift */,
 			);
 			path = "Rubiks Cube Timer";
@@ -280,6 +283,15 @@
 				7857B90025D724760049BA54 /* Info.plist */,
 			);
 			path = "Rubiks Cube Timer Widget";
+			sourceTree = "<group>";
+		};
+		7857B90E25D72DE30049BA54 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				787677DE25CB887700DF38A7 /* Timer.xcdatamodeld */,
+				7857B91425D730830049BA54 /* CoreDataHelper.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		786C933025CB078F003470F3 /* Scramble */ = {
@@ -485,6 +497,7 @@
 				78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */,
 				784070BC25CDBD3500DB81CA /* Scrambler.swift in Sources */,
 				7857B8E925D70AEC0049BA54 /* AlertControlView.swift in Sources */,
+				7857B91525D730830049BA54 /* CoreDataHelper.swift in Sources */,
 				787677F125CB9ADB00DF38A7 /* Solves.swift in Sources */,
 				787677F925CB9B1100DF38A7 /* SolveRow.swift in Sources */,
 				78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */,
@@ -520,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7857B8FC25D724750049BA54 /* Rubiks_Cube_Timer_Widget.swift in Sources */,
+				7857B90F25D72E7B0049BA54 /* Timer.xcdatamodeld in Sources */,
 				7857B90125D724760049BA54 /* Rubiks_Cube_Timer_Widget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

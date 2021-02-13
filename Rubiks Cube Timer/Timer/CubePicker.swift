@@ -19,30 +19,33 @@ let columns = [
 
 struct CubePicker: View {
     @Binding var puzzleSelection: Int   
-    @Binding var sessionSelection: Int
     
     var body: some View {
         VStack {
-            Text("Select a puzzle").font(.title2).bold()
-            LazyVGrid(columns: columns, spacing: 0, content: {
+            List {
                 ForEach(0..<puzzles.count, id: \.self) { item in
                     Button(action: {puzzleSelection = item}, label: {
-                        VStack {
-                            Image(puzzles[item].lowercased())
-                                .resizable()
-                                .frame(width: 35, height: 35)
-                                
-                            Text(puzzles[item]).bold()
-                        }
-                        //.padding()
-                        //.background(puzzleSelection == item ? Color.init(hex: 0xabb3ff) : Color.black.opacity(0.0))
+                        CubeRowView(puzzle: puzzles[item].lowercased(), display: puzzles[item], isSelected: puzzleSelection == item)
                     })
-                    .frame(width: 90, height: 90)
-                    .background(puzzleSelection == item ? Color.init(hex: 0xabb3ff).opacity(0.3) : Color.black.opacity(0.0))
-                    .cornerRadius(10)
+                    //.background(puzzleSelection == item ? Color.init(hex: 0xabb3ff).opacity(0.3) : Color.black.opacity(0.0))
                 }
-            })
-            .frame(width: 300)
+            }
+        }
+    }
+}
+
+struct CubeRowView: View {
+    var puzzle: String
+    var display: String
+    var isSelected: Bool
+    
+    var body: some View {
+        HStack {
+            Image(puzzle)
+                .resizable()
+                .frame(width: 20, height: 20).padding(.trailing)
+            
+            Text(puzzle).foregroundColor(isSelected ? .blue : Color.primary)
         }
     }
 }
@@ -52,6 +55,6 @@ struct CubePicker_Previews: PreviewProvider {
     @State static var session: Int = 1
     
     static var previews: some View {
-        CubePicker(puzzleSelection: $puzzle, sessionSelection: $session)
+        CubePicker(puzzleSelection: $puzzle)
     }
 }

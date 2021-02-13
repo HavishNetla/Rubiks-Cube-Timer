@@ -28,7 +28,7 @@ struct Solves: View {
                 self.partialSheetManager.showPartialSheet({
                     print("Partial sheet dismissed", puzzle)
                 }) {
-                    CubePicker(puzzleSelection: $puzzle, sessionSelection: $session)
+                    CubePicker(puzzleSelection: $puzzle)
                 }
             }, label: {
                 CubePickerButton(puzzle: Int(puzzle), session: session).padding(.bottom)
