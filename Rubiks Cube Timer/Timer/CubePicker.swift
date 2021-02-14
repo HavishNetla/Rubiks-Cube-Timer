@@ -18,13 +18,13 @@ let columns = [
 ]
 
 struct CubePicker: View {
-    @Binding var puzzleSelection: Int   
+    @Binding var puzzleSelection: Int32
     
     var body: some View {
         VStack {
             List {
                 ForEach(0..<puzzles.count, id: \.self) { item in
-                    Button(action: {puzzleSelection = item}, label: {
+                    Button(action: {puzzleSelection = Int32(item)}, label: {
                         CubeRowView(puzzle: puzzles[item].lowercased(), display: puzzles[item], isSelected: puzzleSelection == item)
                     })
                     //.background(puzzleSelection == item ? Color.init(hex: 0xabb3ff).opacity(0.3) : Color.black.opacity(0.0))
@@ -51,8 +51,8 @@ struct CubeRowView: View {
 }
 
 struct CubePicker_Previews: PreviewProvider {
-    @State static var puzzle: Int = 0
-    @State static var session: Int = 1
+    @State static var puzzle: Int32 = 0
+
     
     static var previews: some View {
         CubePicker(puzzleSelection: $puzzle)

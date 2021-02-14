@@ -74,8 +74,8 @@ struct TimerView: View {
                 timerManager.start()
             })
     }
-    @State var puzzleSelection = 1;
-    @State var sessionSelection = 0;
+    @Binding var puzzleSelection: Int32;
+    @Binding var sessionSelection: String;
     
     @State var currPuzzle: Puzzle = Puzzle.threebythree
     
@@ -84,7 +84,7 @@ struct TimerView: View {
         HStack {
             ZStack {
                 VStack {
-                    CubePickerButton(puzzle: puzzleSelection, session: sessionSelection).padding(.top)
+                    CubePickerButton(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection).padding(.top)
                     Text(flags.scramble).font(.title2).fontWeight(.medium).multilineTextAlignment(.center).padding(.top)
                         .onTapGesture {
                             flags.scramble = generator.generateScramble(puzzle: .threebythree)
@@ -261,7 +261,10 @@ struct StatsView: View {
 }
 
 struct Timer_Previews: PreviewProvider {
+    @State static var a: Int32 = 0
+    @State static var b = "Default"
+    
     static var previews: some View {
-        TimerView()
+        TimerView(puzzleSelection: $a, sessionSelection: $b)
     }
 }

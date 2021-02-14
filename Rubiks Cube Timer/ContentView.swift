@@ -16,93 +16,71 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Solve>
         
+    
+    @State var puzzleSelection: Int32 = 0
+    @State var sessionSelection: String = "Default"
+    let defaults = UserDefaults.standard
+
     var body: some View {
         VStack {
             TabView {
                 ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top), content: {
-                    TimerView()
+                    TimerView(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
                         .addPartialSheet()
                 })
                 .tabItem {
                     Image(systemName: "timer")
                     Text("Timer")
                 }
-                Solves()
+                Solves(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
                     .addPartialSheet()
                     .tabItem {
                         Image(systemName: "folder")
                         Text("Solves")
                     }
-                GraphView()
+                GraphView(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection)
                     .addPartialSheet()
                     .tabItem {
                         Image(systemName: "chart.bar")
                         Text("Solves")
                     }
             }
-        }
+        }.onAppear(perform: {
+            var hasAlreadyLaunched = defaults.bool(forKey: "hasAlreadyLaunched")
+            
+            if !hasAlreadyLaunched {
+                addDefaultSession(puzzle: .twobytwo)
+                addDefaultSession(puzzle: .threebythree)
+                addDefaultSession(puzzle: .fourbyfour)
+                addDefaultSession(puzzle: .fivebyfive)
+                addDefaultSession(puzzle: .sixbysix)
+                addDefaultSession(puzzle: .sevenbyseven)
+                addDefaultSession(puzzle: .pyraminx)
+                addDefaultSession(puzzle: .skewb)
+                addDefaultSession(puzzle: .square1)
+                
+                defaults.set(true, forKey: "hasAlreadyLaunched")
+            }
+        })
+
     }
     
-    func average() -> String {
-        if items.count == 0 {
-            return "-"
-        }
-        
-        var average = 0.0
-        
-        for i in items {
-            average += i.time
-        }
-        
-        return String(format: "%.2f", average / Double(items.count))
-    }
-    
-    func ao5() -> String {
-        if items.count < 5 {
-            return "-"
-        }
-        
-        var average = 0.0
-        
-        for i in 0..<5 {
-            average += items[i].time
-        }
-        
-        return String(format: "%.2f", average / 5.0)
-    }
-    
-    func ao12() -> String {
-        if items.count < 12 {
-            return "-"
-        }
-        
-        var average = 0.0
-        
-        for i in 1..<12 {
-            average += items[i].time
-        }
-        
-        return String(format: "%.2f", average / 12.0)
-    }
-    
-    func best() -> String {
-        if items.count == 0 {
-            return "-"
-        }
-        
-        var max = Double.infinity
-        
-        for i in items {
-            if i.time < max {
-                max = i.time
+    private func addDefaultSession(puzzle: Puzzle) {
+        withAnimation {
+            let newItem = Session(context: viewContext)
+            newItem.name = "Default"
+            newItem.puzzle = Int32(puzzle.rawValue)
+            newItem.timestamp = Date()
+            
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
-        
-        return String(format: "%.2f", max)
-    }
-    
-    func asd() {
-        print("asd")
     }
 }
 

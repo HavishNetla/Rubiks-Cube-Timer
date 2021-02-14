@@ -19,7 +19,6 @@ struct Rubiks_Cube_TimerApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(sheetManager)
-
         }
     }
 }

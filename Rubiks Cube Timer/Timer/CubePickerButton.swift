@@ -9,15 +9,13 @@ import SwiftUI
 import SwiftEntryKit
 
 struct CubePickerButton: View {
-    var puzzle: Int
-    var session: Int
     let puzzles = ["2x2","3x3","4x4","5x5","6x6","7x7","Pyraminx","Megaminx","Skewb","Square 1"]
 
     @State var sessionSheet = false
     @State var puzzleSheet = false
 
-    @State var puzzleSelection = 0
-    @State var sessionSelection = "Default"
+    @Binding var puzzleSelection: Int32
+    @Binding var sessionSelection: String
 
     let customView = UIView()
     
@@ -32,7 +30,7 @@ struct CubePickerButton: View {
                 }.sheet(isPresented: $sessionSheet) {
                     NavigationView {
                         // items[index].name
-                        SessionSelector(puzzle: Puzzle.init(rawValue: Int32(puzzle))!, selectedSession: $sessionSelection)
+                        SessionSelector(puzzle: Puzzle.init(rawValue: puzzleSelection)!, selectedSession: $sessionSelection)
                             .navigationBarTitle(Text("Session Selector"), displayMode: .inline)
                             .navigationBarItems(trailing: Button(action: {
                                 print("Dismissing sheet view...")
@@ -48,7 +46,7 @@ struct CubePickerButton: View {
                     puzzleSheet.toggle()
                 }, label: {
                     VStack {
-                        Text(puzzles[puzzleSelection]).bold().foregroundColor(Color.primary)
+                        Text(puzzles[Int(puzzleSelection)]).bold().foregroundColor(Color.primary)
                         Text(sessionSelection).font(.caption).foregroundColor(Color.secondary)
                     }
                 }).sheet(isPresented: $puzzleSheet) {
@@ -121,8 +119,11 @@ extension Color {
 }
 
 struct CubePickerButton_Previews: PreviewProvider {
+    @State static var a = Int32(1)
+    @State static var b = "asd"
+
     static var previews: some View {
-        CubePickerButton(puzzle: 0, session: 0)
+        CubePickerButton(puzzleSelection: $a, sessionSelection: $b)
     }
 }
 

@@ -6,22 +6,52 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SessionSelector: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Session.name, ascending: true)],
-        animation: .default)
-    var items: FetchedResults<Session>
-    
     var puzzle: Puzzle
-    @State var selected = -1
-    @State var selectedText = ""
     
+//        @FetchRequest(
+//            sortDescriptors: [NSSortDescriptor(keyPath: \Session.timestamp, ascending: true)],
+//            predicate: NSPredicate(format: "puzzle == %@", "0"),
+//            animation: .default)
+//        var items: FetchedResults<Session>
+    //
+    
+    // var items : FetchedResults<Session>
     @State var textString = ""
     
     @Binding var selectedSession: String
+    
+    var sessionRequest: FetchRequest<Session>
+    var items: FetchedResults<Session>{sessionRequest.wrappedValue}
+    
+    init(puzzle: Puzzle, selectedSession: Binding<String>) {
+//        let request: NSFetchRequest<Session> = Session.fetchRequest()
+//        request.predicate = NSPredicate(format: "puzzle == %@", "0")
+//        request.sortDescriptors = [NSSortDescriptor(keyPath: \Session.timestamp, ascending: true)]
+//        self.items = FetchRequest(fetchRequest: request).wrappedValue
+        //        print(items)
+        
+        self.sessionRequest = FetchRequest(
+            entity: Session.entity(),
+            sortDescriptors: [NSSortDescriptor(keyPath: \Session.timestamp, ascending: true)],
+            predicate: NSPredicate(format: "puzzle == %@", String(puzzle.rawValue))
+        )
+        
+        print(sessionRequest)
+        
+        
+        //let predicate = NSPredicate(format: "puzzle == %@", "0")
+        
+        //self.items = FetchRequest(entity: Session.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Session.timestamp, ascending: true)], predicate: predicate).wrappedValue
+            
+        self.puzzle = puzzle
+        self._selectedSession = selectedSession
+    }
+    
     
     var body: some View {
         VStack {
@@ -36,8 +66,22 @@ struct SessionSelector: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Button(action: {
-                        if textString != "" {
+                        var isValid = true
+                        
+//                        for i in items {
+//                            if textString == i.name {
+//                                isValid = false
+//                                break
+//                            }
+//                        }
+                        
+                        if textString == "" {
+                            isValid = false
+                        }
+                        
+                        if isValid {
                             addItem()
+                            refresh()
                         }
                     }, label: {
                         Image(systemName: "plus.circle")
@@ -49,18 +93,13 @@ struct SessionSelector: View {
             }.padding()
             
             List{
-                ForEach(-1..<items.count, id: \.self){ index in
+                ForEach(items, id: \.self) { item in
                     HStack {
                         Button(action: {
-                            selected = index
-                            if index == -1 {
-                                selectedSession = "Default"
-                            } else {
-                                selectedSession = items[index].name!
-                            }
+                            selectedSession = item.name!
                         }) {
                             HStack{
-                                if selected == index {
+                                if selectedSession == item.name! {
                                     Image(systemName: "tag.fill")
                                         .foregroundColor(.blue)
                                         .animation(.easeIn)
@@ -71,21 +110,20 @@ struct SessionSelector: View {
                                         .animation(.easeIn)
                                         .padding(.trailing)
                                 }
-                                
-                                if index == -1 {
-                                    Text("Default").foregroundColor(.primary)
-                                } else {
-                                    Text(items[index].name!).foregroundColor(.primary)
-                                }
+
+
+                                Text(item.name!).foregroundColor(.primary)
                             }
                         }.buttonStyle(BorderlessButtonStyle())
                     }
                 }.onDelete(perform: deleteItems)
+                
             }
         }        
     }
+   
     private func deleteItems(offsets: IndexSet) {
-        withAnimation {
+        //withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
             
             do {
@@ -96,7 +134,7 @@ struct SessionSelector: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
-        }
+       // }
     }
     
     private func addItem() {
@@ -104,6 +142,7 @@ struct SessionSelector: View {
             let newItem = Session(context: viewContext)
             newItem.name = textString
             newItem.puzzle = Int32(puzzle.rawValue)
+            newItem.timestamp = Date()
             
             do {
                 try viewContext.save()
@@ -117,9 +156,9 @@ struct SessionSelector: View {
     }
     
     private func refresh() {
-        withAnimation {
+        //withAnimation {
             viewContext.refreshAllObjects()
-        }
+        //}
     }
 }
 

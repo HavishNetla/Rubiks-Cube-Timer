@@ -18,40 +18,30 @@ struct GraphView: View {
         animation: .default)
     private var items: FetchedResults<Solve>
     
-    @State var puzzleSelection: Int = 0
-    @State var sessionSelection: Int = 0
-    @State var showSelector = false
+    @Binding var puzzleSelection: Int32
+    @Binding var sessionSelection: String
 
     var body: some View {
         let data: [Double] = items.reversed().map { $0.time }
         
         VStack {
-            Button(action: {
-                self.partialSheetManager.showPartialSheet({
-                    print("Partial sheet dismissed", puzzleSelection)
-                }) {
-                    CubePicker(puzzleSelection: $puzzleSelection)
-                }
-            }, label: {
-                CubePickerButton(puzzle: Int(puzzleSelection), session: sessionSelection).padding(.bottom)
-            }).padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0 ))
+            CubePickerButton(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection).padding(.top)
 
             
             LineView(data: data, title: "Line chart", legend: "Full screen")            //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center, height: 1000)
                 //.frame(height: 500)
                 .padding()
                 .padding(.top)
-        }.present(isPresented: $showSelector, type: .alert, position: .top, autohideDuration: Double.infinity, closeOnTapOutside: true) {
-            CubePicker(puzzleSelection: $puzzleSelection)
         }
-
-        // legend is optional, use optional .padding()
 
     }
 }
 
 struct GraphView_Previews: PreviewProvider {
+    @State static var a = Int32(0)
+    @State static var b = "session"
+    
     static var previews: some View {
-        GraphView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        GraphView(puzzleSelection: $a, sessionSelection: $b).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

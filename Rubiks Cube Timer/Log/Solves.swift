@@ -18,21 +18,13 @@ struct Solves: View {
     private var items: FetchedResults<Solve>
     
     
-    @State var puzzle: Int = 0
-    @State var session: Int = 0
-    
+    @Binding var puzzleSelection: Int32
+    @Binding var sessionSelection: String
+
     var body: some View {
         
         VStack {
-            Button(action: {
-                self.partialSheetManager.showPartialSheet({
-                    print("Partial sheet dismissed", puzzle)
-                }) {
-                    CubePicker(puzzleSelection: $puzzle)
-                }
-            }, label: {
-                CubePickerButton(puzzle: Int(puzzle), session: session).padding(.bottom)
-            }).padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0 ))
+            CubePickerButton(puzzleSelection: $puzzleSelection, sessionSelection: $sessionSelection).padding(.top)
             
             List {
                 ForEach(items) { item in
@@ -40,7 +32,6 @@ struct Solves: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-            
         }
     }
     
@@ -61,7 +52,10 @@ struct Solves: View {
 }
 
 struct Solves_Previews: PreviewProvider {
+    @State static var a = Int32(0)
+    @State static var b = "sesision"
+    
     static var previews: some View {
-        Solves().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        Solves(puzzleSelection: $a, sessionSelection: $b).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
