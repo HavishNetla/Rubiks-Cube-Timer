@@ -18,8 +18,8 @@ struct GraphView: View {
         animation: .default)
     private var items: FetchedResults<Solve>
     
-    @Binding var puzzleSelection: Int32
-    @Binding var sessionSelection: String
+    @Binding var puzzleSelection: Int
+    @Binding var sessionSelection: String?
 
     var body: some View {
         let data: [Double] = items.reversed().map { $0.time }
@@ -38,8 +38,8 @@ struct GraphView: View {
 }
 
 struct GraphView_Previews: PreviewProvider {
-    @State static var a = Int32(0)
-    @State static var b = "session"
+    @State static var a = 0
+    @State static var b: String? = "session"
     
     static var previews: some View {
         GraphView(puzzleSelection: $a, sessionSelection: $b).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

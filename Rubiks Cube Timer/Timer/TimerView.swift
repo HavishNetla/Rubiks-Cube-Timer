@@ -74,8 +74,8 @@ struct TimerView: View {
                 timerManager.start()
             })
     }
-    @Binding var puzzleSelection: Int32;
-    @Binding var sessionSelection: String;
+    @Binding var puzzleSelection: Int
+    @Binding var sessionSelection: String?
     
     @State var currPuzzle: Puzzle = Puzzle.threebythree
     
@@ -140,6 +140,7 @@ struct TimerView: View {
             newItem.time = timerManager.elapsed
             newItem.scramble = flags.prevScramble
             newItem.puzzle = Int32(puzzleSelection)
+            newItem.session = sessionSelection
             
             do {
                 try viewContext.save()
@@ -261,8 +262,8 @@ struct StatsView: View {
 }
 
 struct Timer_Previews: PreviewProvider {
-    @State static var a: Int32 = 0
-    @State static var b = "Default"
+    @State static var a = 0
+    @State static var b: String? = "Default"
     
     static var previews: some View {
         TimerView(puzzleSelection: $a, sessionSelection: $b)

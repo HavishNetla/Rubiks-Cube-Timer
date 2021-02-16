@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7815110225D5F4D900FA9C1D /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7815110125D5F4D900FA9C1D /* SwiftEntryKit */; };
-		784070B725CD88D700DB81CA /* CubePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784070B625CD88D700DB81CA /* CubePicker.swift */; };
 		784070BC25CDBD3500DB81CA /* Scrambler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784070BB25CDBD3500DB81CA /* Scrambler.swift */; };
 		784070C725CDC75500DB81CA /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784070C625CDC75500DB81CA /* ScrambleGenerator.swift */; };
 		78458D5D25D456ED0064DDBB /* CubePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D5C25D456ED0064DDBB /* CubePickerButton.swift */; };
-		78458D6225D474EA0064DDBB /* SessionSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D6125D474EA0064DDBB /* SessionSelector.swift */; };
+		78458D6225D474EA0064DDBB /* SessionCubeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D6125D474EA0064DDBB /* SessionCubeSelector.swift */; };
 		78458D7425D48F3F0064DDBB /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D7325D48F3F0064DDBB /* PopupView */; };
 		78458D7A25D49A0C0064DDBB /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D7925D49A0C0064DDBB /* BLTNBoard */; };
 		78458D8025D49DB30064DDBB /* SSToastMessage in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D7F25D49DB30064DDBB /* SSToastMessage */; };
@@ -43,6 +42,8 @@
 		787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677E725CB892300DF38A7 /* PersistenceController.swift */; };
 		787677F125CB9ADB00DF38A7 /* Solves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F025CB9ADB00DF38A7 /* Solves.swift */; };
 		787677F925CB9B1100DF38A7 /* SolveRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F825CB9B1100DF38A7 /* SolveRow.swift */; };
+		78E6032E25D9C018007462E8 /* SessionAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E6032D25D9C018007462E8 /* SessionAdder.swift */; };
+		78E6033525D9CEFE007462E8 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 78E6033425D9CEFE007462E8 /* SPAlert */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,11 +85,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		784070B625CD88D700DB81CA /* CubePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePicker.swift; sourceTree = "<group>"; };
+		783558D125DB384C0079F11E /* Rubiks Cube Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rubiks Cube Timer.entitlements"; sourceTree = "<group>"; };
+		783558D225DB384C0079F11E /* Rubiks Cube Timer WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rubiks Cube Timer WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		784070BB25CDBD3500DB81CA /* Scrambler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scrambler.swift; sourceTree = "<group>"; };
 		784070C625CDC75500DB81CA /* ScrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGenerator.swift; sourceTree = "<group>"; };
 		78458D5C25D456ED0064DDBB /* CubePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePickerButton.swift; sourceTree = "<group>"; };
-		78458D6125D474EA0064DDBB /* SessionSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSelector.swift; sourceTree = "<group>"; };
+		78458D6125D474EA0064DDBB /* SessionCubeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCubeSelector.swift; sourceTree = "<group>"; };
 		78458D8525D4AD0E0064DDBB /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		78458D9425D570C90064DDBB /* 3x3Visualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3x3Visualizer.swift; sourceTree = "<group>"; };
 		78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rubiks Cube Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 		787677E725CB892300DF38A7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		787677F025CB9ADB00DF38A7 /* Solves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solves.swift; sourceTree = "<group>"; };
 		787677F825CB9B1100DF38A7 /* SolveRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveRow.swift; sourceTree = "<group>"; };
+		78E6032D25D9C018007462E8 /* SessionAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAdder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,7 @@
 			files = (
 				78458D7425D48F3F0064DDBB /* PopupView in Frameworks */,
 				7815110225D5F4D900FA9C1D /* SwiftEntryKit in Frameworks */,
+				78E6033525D9CEFE007462E8 /* SPAlert in Frameworks */,
 				78458D7A25D49A0C0064DDBB /* BLTNBoard in Frameworks */,
 				78458D8025D49DB30064DDBB /* SSToastMessage in Frameworks */,
 				78458D8F25D4AD2A0064DDBB /* SwiftUICharts in Frameworks */,
@@ -188,6 +192,7 @@
 		78540DC825C8A8C300D0FEE4 = {
 			isa = PBXGroup;
 			children = (
+				783558D225DB384C0079F11E /* Rubiks Cube Timer WidgetExtension.entitlements */,
 				7857B90E25D72DE30049BA54 /* Shared */,
 				78540DD325C8A8C300D0FEE4 /* Rubiks Cube Timer */,
 				78540DE525C8A8C500D0FEE4 /* Rubiks Cube TimerTests */,
@@ -212,6 +217,7 @@
 		78540DD325C8A8C300D0FEE4 /* Rubiks Cube Timer */ = {
 			isa = PBXGroup;
 			children = (
+				783558D125DB384C0079F11E /* Rubiks Cube Timer.entitlements */,
 				78458D8425D4AD040064DDBB /* Graph */,
 				78458D6625D48E3F0064DDBB /* Utils */,
 				787677EF25CB9AC900DF38A7 /* Log */,
@@ -258,9 +264,9 @@
 				786C933025CB078F003470F3 /* Scramble */,
 				78540E0325C8AAC700D0FEE4 /* TimerView.swift */,
 				78540E1125C8BE0800D0FEE4 /* TimerManager.swift */,
-				784070B625CD88D700DB81CA /* CubePicker.swift */,
 				78458D5C25D456ED0064DDBB /* CubePickerButton.swift */,
-				78458D6125D474EA0064DDBB /* SessionSelector.swift */,
+				78458D6125D474EA0064DDBB /* SessionCubeSelector.swift */,
+				78E6032D25D9C018007462E8 /* SessionAdder.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 				78458D7F25D49DB30064DDBB /* SSToastMessage */,
 				78458D8E25D4AD2A0064DDBB /* SwiftUICharts */,
 				7815110125D5F4D900FA9C1D /* SwiftEntryKit */,
+				78E6033425D9CEFE007462E8 /* SPAlert */,
 			);
 			productName = "Rubiks Cube Timer";
 			productReference = 78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */;
@@ -439,6 +446,7 @@
 				78458D7E25D49DB30064DDBB /* XCRemoteSwiftPackageReference "SSToastMessage" */,
 				78458D8D25D4AD2A0064DDBB /* XCRemoteSwiftPackageReference "ChartView" */,
 				7815110025D5F4D900FA9C1D /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
+				78E6033325D9CEFE007462E8 /* XCRemoteSwiftPackageReference "SPAlert" */,
 			);
 			productRefGroup = 78540DD225C8A8C300D0FEE4 /* Products */;
 			projectDirPath = "";
@@ -491,7 +499,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				784070B725CD88D700DB81CA /* CubePicker.swift in Sources */,
 				78540E0425C8AAC700D0FEE4 /* TimerView.swift in Sources */,
 				78458D5D25D456ED0064DDBB /* CubePickerButton.swift in Sources */,
 				78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */,
@@ -506,9 +513,10 @@
 				78458D9525D570C90064DDBB /* 3x3Visualizer.swift in Sources */,
 				784070C725CDC75500DB81CA /* ScrambleGenerator.swift in Sources */,
 				78540DD525C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift in Sources */,
+				78E6032E25D9C018007462E8 /* SessionAdder.swift in Sources */,
 				7857B90225D724760049BA54 /* Rubiks_Cube_Timer_Widget.intentdefinition in Sources */,
 				787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */,
-				78458D6225D474EA0064DDBB /* SessionSelector.swift in Sources */,
+				78458D6225D474EA0064DDBB /* SessionCubeSelector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +689,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Rubiks Cube Timer/Rubiks Cube Timer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Rubiks Cube Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = 45Q2K2H5NA;
@@ -693,6 +702,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.havish.Rubiks-Cube-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -704,6 +714,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Rubiks Cube Timer/Rubiks Cube Timer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Rubiks Cube Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = 45Q2K2H5NA;
@@ -716,6 +727,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.havish.Rubiks-Cube-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -810,6 +822,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Rubiks Cube Timer WidgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45Q2K2H5NA;
 				INFOPLIST_FILE = "Rubiks Cube Timer Widget/Info.plist";
@@ -821,6 +834,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.havish.Rubiks-Cube-Timer.Rubiks-Cube-Timer-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -831,6 +845,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Rubiks Cube Timer WidgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45Q2K2H5NA;
 				INFOPLIST_FILE = "Rubiks Cube Timer Widget/Info.plist";
@@ -842,6 +857,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.havish.Rubiks-Cube-Timer.Rubiks-Cube-Timer-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -954,6 +970,14 @@
 				minimumVersion = 1.2.6;
 			};
 		};
+		78E6033325D9CEFE007462E8 /* XCRemoteSwiftPackageReference "SPAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/varabeis/SPAlert";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -991,6 +1015,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 785FB61B25D20C55009EC3F6 /* XCRemoteSwiftPackageReference "neumorphic" */;
 			productName = Neumorphic;
+		};
+		78E6033425D9CEFE007462E8 /* SPAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78E6033325D9CEFE007462E8 /* XCRemoteSwiftPackageReference "SPAlert" */;
+			productName = SPAlert;
 		};
 /* End XCSwiftPackageProductDependency section */
 
