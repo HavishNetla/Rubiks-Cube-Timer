@@ -12,27 +12,25 @@ struct SolveRow: View {
     var scramble: String
     var date: Date
     var puzzle: Puzzle
+    var isPb: Bool
     
     var body: some View {
         HStack {
-            Text(enumToString(p: puzzle))
-            Image("3x3")
-                .resizable()
-                .frame(width: 30, height: 30)
-                .padding(.trailing)
-                .padding(.leading)
-            
-            
             VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
                 HStack {
                     Text("\(time, specifier: "%.2f")")
                         .font(.title2)
                         .fontWeight(.bold)
                     
+                    if (isPb) {
+                        PB()
+                    }
+                    
+                    
                     Spacer()
                     
                     Text("\(formatDate())").padding(.trailing)
-                }
+                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
                 
                 Text("\(scramble)")
                     .font(.footnote)
@@ -77,6 +75,6 @@ struct SolveRow: View {
 
 struct SolveRow_Previews: PreviewProvider {
     static var previews: some View {
-        SolveRow(time: 24.52, scramble: "B2 R2 U2 F U2 F' R2 F' L2 B2 R2 B' U F' R' B F2 L B2 R B", date: Date.init(), puzzle: .threebythree)
+        SolveRow(time: 24.52, scramble: "B2 R2 U2 F U2 F' R2 F' L2 B2 R2 B' U F' R' B F2 L B2 R B", date: Date.init(), puzzle: .threebythree, isPb: true)
     }
 }

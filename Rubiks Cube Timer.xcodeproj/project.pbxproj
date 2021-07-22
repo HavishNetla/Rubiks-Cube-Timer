@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7815110225D5F4D900FA9C1D /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7815110125D5F4D900FA9C1D /* SwiftEntryKit */; };
+		781E73B026A8A0A900DFC861 /* SolveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781E73AF26A8A0A900DFC861 /* SolveTest.swift */; };
 		784070BC25CDBD3500DB81CA /* Scrambler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784070BB25CDBD3500DB81CA /* Scrambler.swift */; };
 		784070C725CDC75500DB81CA /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784070C625CDC75500DB81CA /* ScrambleGenerator.swift */; };
 		78458D5D25D456ED0064DDBB /* CubePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D5C25D456ED0064DDBB /* CubePickerButton.swift */; };
@@ -85,6 +86,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		781E73AF26A8A0A900DFC861 /* SolveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveTest.swift; sourceTree = "<group>"; };
 		783558D125DB384C0079F11E /* Rubiks Cube Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rubiks Cube Timer.entitlements"; sourceTree = "<group>"; };
 		783558D225DB384C0079F11E /* Rubiks Cube Timer WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rubiks Cube Timer WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		784070BB25CDBD3500DB81CA /* Scrambler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scrambler.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		787677E725CB892300DF38A7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		787677F025CB9ADB00DF38A7 /* Solves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solves.swift; sourceTree = "<group>"; };
 		787677F825CB9B1100DF38A7 /* SolveRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveRow.swift; sourceTree = "<group>"; };
+		78C0ECDF26A8FD280005C6ED /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		78E6032D25D9C018007462E8 /* SessionAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAdder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +195,7 @@
 		78540DC825C8A8C300D0FEE4 = {
 			isa = PBXGroup;
 			children = (
+				78C0ECDF26A8FD280005C6ED /* TODO.md */,
 				783558D225DB384C0079F11E /* Rubiks Cube Timer WidgetExtension.entitlements */,
 				7857B90E25D72DE30049BA54 /* Shared */,
 				78540DD325C8A8C300D0FEE4 /* Rubiks Cube Timer */,
@@ -315,6 +319,7 @@
 			children = (
 				787677F025CB9ADB00DF38A7 /* Solves.swift */,
 				787677F825CB9B1100DF38A7 /* SolveRow.swift */,
+				781E73AF26A8A0A900DFC861 /* SolveTest.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				781E73B026A8A0A900DFC861 /* SolveTest.swift in Sources */,
 				78540E0425C8AAC700D0FEE4 /* TimerView.swift in Sources */,
 				78458D5D25D456ED0064DDBB /* CubePickerButton.swift in Sources */,
 				78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */,
@@ -692,7 +698,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Rubiks Cube Timer/Rubiks Cube Timer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Rubiks Cube Timer/Preview Content\"";
-				DEVELOPMENT_TEAM = 45Q2K2H5NA;
+				DEVELOPMENT_TEAM = N9JN6V2956;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Rubiks Cube Timer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -717,7 +723,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Rubiks Cube Timer/Rubiks Cube Timer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Rubiks Cube Timer/Preview Content\"";
-				DEVELOPMENT_TEAM = 45Q2K2H5NA;
+				DEVELOPMENT_TEAM = N9JN6V2956;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Rubiks Cube Timer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -739,7 +745,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 45Q2K2H5NA;
+				DEVELOPMENT_TEAM = N9JN6V2956;
 				INFOPLIST_FILE = "Rubiks Cube TimerTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -761,7 +767,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 45Q2K2H5NA;
+				DEVELOPMENT_TEAM = N9JN6V2956;
 				INFOPLIST_FILE = "Rubiks Cube TimerTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -782,7 +788,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 45Q2K2H5NA;
+				DEVELOPMENT_TEAM = N9JN6V2956;
 				INFOPLIST_FILE = "Rubiks Cube TimerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -802,7 +808,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 45Q2K2H5NA;
+				DEVELOPMENT_TEAM = N9JN6V2956;
 				INFOPLIST_FILE = "Rubiks Cube TimerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -824,7 +830,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Rubiks Cube Timer WidgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 45Q2K2H5NA;
+				DEVELOPMENT_TEAM = N9JN6V2956;
 				INFOPLIST_FILE = "Rubiks Cube Timer Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -847,7 +853,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Rubiks Cube Timer WidgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 45Q2K2H5NA;
+				DEVELOPMENT_TEAM = N9JN6V2956;
 				INFOPLIST_FILE = "Rubiks Cube Timer Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

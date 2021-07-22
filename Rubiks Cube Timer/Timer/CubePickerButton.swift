@@ -15,7 +15,7 @@ struct CubePickerButton: View {
     @State var sessionAdderSheet = false
 
     @Binding var puzzleSelection: Int
-    @Binding var sessionSelection: String?
+    @Binding var sessionSelection: String
 
     let customView = UIView()
     
@@ -34,7 +34,7 @@ struct CubePickerButton: View {
                 }, label: {
                     VStack {
                         Text(puzzles[Int(puzzleSelection)]).bold().foregroundColor(Color.primary)
-                        Text(sessionSelection ?? "ops").font(.caption).foregroundColor(Color.secondary)
+                        Text(sessionSelection).font(.caption).foregroundColor(Color.secondary)
                     }
                 }).sheet(isPresented: $puzzleSheet) {
                     VStack {
@@ -109,7 +109,7 @@ extension Color {
 
 struct CubePickerButton_Previews: PreviewProvider {
     @State static var a = 1
-    @State static var b: String? = "asd"
+    @State static var b: String = "asd"
 
     static var previews: some View {
         CubePickerButton(puzzleSelection: $a, sessionSelection: $b)

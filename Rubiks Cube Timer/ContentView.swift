@@ -18,7 +18,7 @@ struct ContentView: View {
         
     
     @State var puzzleSelection = 0
-    @State var sessionSelection: String? = "Default"
+    @State var sessionSelection: String = "Default"
     let defaults = UserDefaults.standard
 
     var body: some View {
@@ -49,8 +49,10 @@ struct ContentView: View {
             let puzzle = defaults.integer(forKey: "Puzzle")
             let session = defaults.string(forKey: "Session")
             
+            print(session)
+            
             puzzleSelection = puzzle
-            sessionSelection = session
+            sessionSelection = session ?? "Default"
         })
     }
 }

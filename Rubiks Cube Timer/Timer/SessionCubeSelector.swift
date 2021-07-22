@@ -13,7 +13,7 @@ struct SessionCubeSelector: View {
     let defaults = UserDefaults.standard
 
     @Binding var selectedPuzzle: Int
-    @Binding var selectedSession: String?
+    @Binding var selectedSession: String
 
     @State private var isUsingDefault: Bool = true
     
@@ -67,10 +67,10 @@ struct SessionCubeSelector: View {
                         List {
                             ForEach(sessions.filter {$0.puzzle == Int32(selectedPuzzle)}, id: \.self) { session in
                                 Button(action: {
-                                    selectedSession = session.name
+                                    selectedSession = session.name!
                                 }, label: {
                                     Text(session.name!)
-                                        .foregroundColor(selectedSession == session.name! ? Color.red : Color.primary)
+                                        .foregroundColor(selectedSession == session.name! ? Color.green : Color.primary)
                                         .tag(session.name)
                                 })
                             }.onDelete(perform: deleteItems)
@@ -84,14 +84,16 @@ struct SessionCubeSelector: View {
         }.onAppear(perform: {
             if selectedSession != "Default" {
                 isUsingDefault = false
+            } else {
+                isUsingDefault = true
             }
-            
-            print(sessions)
         })
         .onDisappear(perform: {
-            defaults.set("Session", forKey: selectedSession!)
+            print("got here", selectedSession)
+            defaults.set("Session", forKey: "testing123")
             defaults.set("Puzzle", forKey: String(selectedPuzzle))
-
+            
+            print(defaults.string(forKey: "Session"))
         })
     }
     
@@ -125,7 +127,7 @@ struct SessionCubeSelector: View {
     }
     
     struct SessionSelector_Previews: PreviewProvider {
-        @State static var a: String? = "asd"
+        @State static var a: String = "asd"
         @State static var b = 0
 
         static var previews: some View {

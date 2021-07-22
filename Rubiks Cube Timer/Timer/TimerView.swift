@@ -49,7 +49,6 @@ struct TimerView: View {
                     flags.prevScramble = flags.scramble
                     
                     flags.scramble = generator.generateScramble(puzzle: Puzzle(rawValue: Int32(puzzleSelection))!)
-                    print("here")
                     UIApplication.shared.isIdleTimerDisabled = false
                     addItem()
                 } else {
@@ -75,7 +74,7 @@ struct TimerView: View {
             })
     }
     @Binding var puzzleSelection: Int
-    @Binding var sessionSelection: String?
+    @Binding var sessionSelection: String
     
     @State var currPuzzle: Puzzle = Puzzle.threebythree
     
@@ -127,10 +126,6 @@ struct TimerView: View {
         .contentShape(Rectangle())
         .background(Color.gray.opacity(0.0))
         .gesture(combined)
-    }
-    
-    func asd() {
-        print("asd")
     }
     
     private func addItem() {
@@ -263,7 +258,7 @@ struct StatsView: View {
 
 struct Timer_Previews: PreviewProvider {
     @State static var a = 0
-    @State static var b: String? = "Default"
+    @State static var b: String = "Default"
     
     static var previews: some View {
         TimerView(puzzleSelection: $a, sessionSelection: $b)
