@@ -93,7 +93,7 @@ struct TimerView: View {
                     
                     HStack {
                         //Spacer()
-                        StatsView(items: items).padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 30))
+                        StatsView(items: items.filter({$0.puzzle == Int32(puzzleSelection) && $0.session == sessionSelection})).padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 30))
                     }.padding(.bottom)
                 }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                 
@@ -150,14 +150,15 @@ struct TimerView: View {
 }
 
 struct StatsView: View {
-    var items: FetchedResults<Solve>
+    var items: [FetchedResults<Solve>.Element]
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text("Deviation: ").bold() + Text(deviation())
                 Text("Mean: ").bold() + Text(mean())
                 Text("Best: ").bold() + Text(best())
-                Text("Count: ").bold() + Text(count())
+                Text("Count: ").bold() + Text(count() == "100" ? "💯" : count())
             }
             
             Spacer()

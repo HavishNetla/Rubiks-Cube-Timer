@@ -5,6 +5,7 @@
 4. Default select a session when you uncheck the "use default session"
 5. Add buttons that show up after you finish a solve to do DNF, plus 2, and notes
 6. Persist the puzzle and session selection
+7. Delete sessions
 
 
 

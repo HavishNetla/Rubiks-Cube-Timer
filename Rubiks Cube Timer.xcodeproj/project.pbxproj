@@ -19,6 +19,7 @@
 		78458D8625D4AD0E0064DDBB /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D8525D4AD0E0064DDBB /* GraphView.swift */; };
 		78458D8F25D4AD2A0064DDBB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D8E25D4AD2A0064DDBB /* SwiftUICharts */; };
 		78458D9525D570C90064DDBB /* 3x3Visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D9425D570C90064DDBB /* 3x3Visualizer.swift */; };
+		784D54C126AA093500884C3D /* CustomModalView in Frameworks */ = {isa = PBXBuildFile; productRef = 784D54C026AA093500884C3D /* CustomModalView */; };
 		78540DD525C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DD425C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift */; };
 		78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DD625C8A8C300D0FEE4 /* ContentView.swift */; };
 		78540DD925C8A8C500D0FEE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78540DD825C8A8C500D0FEE4 /* Assets.xcassets */; };
@@ -136,6 +137,7 @@
 				78E6033525D9CEFE007462E8 /* SPAlert in Frameworks */,
 				78458D7A25D49A0C0064DDBB /* BLTNBoard in Frameworks */,
 				78458D8025D49DB30064DDBB /* SSToastMessage in Frameworks */,
+				784D54C126AA093500884C3D /* CustomModalView in Frameworks */,
 				78458D8F25D4AD2A0064DDBB /* SwiftUICharts in Frameworks */,
 				785FB61D25D20C55009EC3F6 /* Neumorphic in Frameworks */,
 				785FB61725D1DD6D009EC3F6 /* PartialSheet in Frameworks */,
@@ -351,6 +353,7 @@
 				78458D8E25D4AD2A0064DDBB /* SwiftUICharts */,
 				7815110125D5F4D900FA9C1D /* SwiftEntryKit */,
 				78E6033425D9CEFE007462E8 /* SPAlert */,
+				784D54C026AA093500884C3D /* CustomModalView */,
 			);
 			productName = "Rubiks Cube Timer";
 			productReference = 78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */;
@@ -452,6 +455,7 @@
 				78458D8D25D4AD2A0064DDBB /* XCRemoteSwiftPackageReference "ChartView" */,
 				7815110025D5F4D900FA9C1D /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 				78E6033325D9CEFE007462E8 /* XCRemoteSwiftPackageReference "SPAlert" */,
+				784D54BF26AA093500884C3D /* XCRemoteSwiftPackageReference "CustomModalView" */,
 			);
 			productRefGroup = 78540DD225C8A8C300D0FEE4 /* Products */;
 			projectDirPath = "";
@@ -960,6 +964,14 @@
 				minimumVersion = 1.5.4;
 			};
 		};
+		784D54BF26AA093500884C3D /* XCRemoteSwiftPackageReference "CustomModalView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jankaltoun/CustomModalView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		785FB61525D1DD6D009EC3F6 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
@@ -1011,6 +1023,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 78458D8D25D4AD2A0064DDBB /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
+		};
+		784D54C026AA093500884C3D /* CustomModalView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 784D54BF26AA093500884C3D /* XCRemoteSwiftPackageReference "CustomModalView" */;
+			productName = CustomModalView;
 		};
 		785FB61625D1DD6D009EC3F6 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
