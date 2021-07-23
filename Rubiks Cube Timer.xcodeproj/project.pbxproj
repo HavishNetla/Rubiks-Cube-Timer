@@ -20,6 +20,8 @@
 		78458D8F25D4AD2A0064DDBB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 78458D8E25D4AD2A0064DDBB /* SwiftUICharts */; };
 		78458D9525D570C90064DDBB /* 3x3Visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D9425D570C90064DDBB /* 3x3Visualizer.swift */; };
 		784D54C126AA093500884C3D /* CustomModalView in Frameworks */ = {isa = PBXBuildFile; productRef = 784D54C026AA093500884C3D /* CustomModalView */; };
+		784D54C326AA6DF500884C3D /* FancyModalStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D54C226AA6DF500884C3D /* FancyModalStyle.swift */; };
+		784D54C526AA728600884C3D /* SolveMoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D54C426AA728600884C3D /* SolveMoreInfoView.swift */; };
 		78540DD525C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DD425C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift */; };
 		78540DD725C8A8C300D0FEE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78540DD625C8A8C300D0FEE4 /* ContentView.swift */; };
 		78540DD925C8A8C500D0FEE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78540DD825C8A8C500D0FEE4 /* Assets.xcassets */; };
@@ -96,6 +98,8 @@
 		78458D6125D474EA0064DDBB /* SessionCubeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCubeSelector.swift; sourceTree = "<group>"; };
 		78458D8525D4AD0E0064DDBB /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		78458D9425D570C90064DDBB /* 3x3Visualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3x3Visualizer.swift; sourceTree = "<group>"; };
+		784D54C226AA6DF500884C3D /* FancyModalStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyModalStyle.swift; sourceTree = "<group>"; };
+		784D54C426AA728600884C3D /* SolveMoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveMoreInfoView.swift; sourceTree = "<group>"; };
 		78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rubiks Cube Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78540DD425C8A8C300D0FEE4 /* Rubiks_Cube_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubiks_Cube_TimerApp.swift; sourceTree = "<group>"; };
 		78540DD625C8A8C300D0FEE4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				7857B8E825D70AEC0049BA54 /* AlertControlView.swift */,
+				784D54C226AA6DF500884C3D /* FancyModalStyle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				787677F025CB9ADB00DF38A7 /* Solves.swift */,
 				787677F825CB9B1100DF38A7 /* SolveRow.swift */,
 				781E73AF26A8A0A900DFC861 /* SolveTest.swift */,
+				784D54C426AA728600884C3D /* SolveMoreInfoView.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -511,6 +517,7 @@
 				781E73B026A8A0A900DFC861 /* SolveTest.swift in Sources */,
 				78540E0425C8AAC700D0FEE4 /* TimerView.swift in Sources */,
 				78458D5D25D456ED0064DDBB /* CubePickerButton.swift in Sources */,
+				784D54C526AA728600884C3D /* SolveMoreInfoView.swift in Sources */,
 				78540E1225C8BE0800D0FEE4 /* TimerManager.swift in Sources */,
 				784070BC25CDBD3500DB81CA /* Scrambler.swift in Sources */,
 				7857B8E925D70AEC0049BA54 /* AlertControlView.swift in Sources */,
@@ -527,6 +534,7 @@
 				7857B90225D724760049BA54 /* Rubiks_Cube_Timer_Widget.intentdefinition in Sources */,
 				787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */,
 				78458D6225D474EA0064DDBB /* SessionCubeSelector.swift in Sources */,
+				784D54C326AA6DF500884C3D /* FancyModalStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
