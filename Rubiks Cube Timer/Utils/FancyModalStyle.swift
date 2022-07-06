@@ -28,6 +28,7 @@ struct FancyModalStyle: ModalStyle {
             configuration.content
                 //.background(Color.white)
                 .background(Color(.systemGray5))
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .zIndex(1001)
         }

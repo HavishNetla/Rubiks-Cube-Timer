@@ -46,6 +46,8 @@
 		787677E825CB892300DF38A7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677E725CB892300DF38A7 /* PersistenceController.swift */; };
 		787677F125CB9ADB00DF38A7 /* Solves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F025CB9ADB00DF38A7 /* Solves.swift */; };
 		787677F925CB9B1100DF38A7 /* SolveRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787677F825CB9B1100DF38A7 /* SolveRow.swift */; };
+		78D30E5726AD15370008EEA1 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 78D30E5626AD15370008EEA1 /* ConfettiSwiftUI */; };
+		78D30E5826AD15370008EEA1 /* ConfettiSwiftUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 78D30E5626AD15370008EEA1 /* ConfettiSwiftUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		78E6032E25D9C018007462E8 /* SessionAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E6032D25D9C018007462E8 /* SessionAdder.swift */; };
 		78E6033525D9CEFE007462E8 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 78E6033425D9CEFE007462E8 /* SPAlert */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,17 @@
 				7857B90525D724760049BA54 /* Rubiks Cube Timer WidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78D30E5926AD15370008EEA1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				78D30E5826AD15370008EEA1 /* ConfettiSwiftUI in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -136,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D30E5726AD15370008EEA1 /* ConfettiSwiftUI in Frameworks */,
 				78458D7425D48F3F0064DDBB /* PopupView in Frameworks */,
 				7815110225D5F4D900FA9C1D /* SwiftEntryKit in Frameworks */,
 				78E6033525D9CEFE007462E8 /* SPAlert in Frameworks */,
@@ -343,6 +357,7 @@
 				78540DCE25C8A8C300D0FEE4 /* Frameworks */,
 				78540DCF25C8A8C300D0FEE4 /* Resources */,
 				7857B90925D724760049BA54 /* Embed App Extensions */,
+				78D30E5926AD15370008EEA1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -360,6 +375,7 @@
 				7815110125D5F4D900FA9C1D /* SwiftEntryKit */,
 				78E6033425D9CEFE007462E8 /* SPAlert */,
 				784D54C026AA093500884C3D /* CustomModalView */,
+				78D30E5626AD15370008EEA1 /* ConfettiSwiftUI */,
 			);
 			productName = "Rubiks Cube Timer";
 			productReference = 78540DD125C8A8C300D0FEE4 /* Rubiks Cube Timer.app */;
@@ -462,6 +478,7 @@
 				7815110025D5F4D900FA9C1D /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 				78E6033325D9CEFE007462E8 /* XCRemoteSwiftPackageReference "SPAlert" */,
 				784D54BF26AA093500884C3D /* XCRemoteSwiftPackageReference "CustomModalView" */,
+				78D30E5526AD15370008EEA1 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = 78540DD225C8A8C300D0FEE4 /* Products */;
 			projectDirPath = "";
@@ -996,6 +1013,14 @@
 				minimumVersion = 1.2.6;
 			};
 		};
+		78D30E5526AD15370008EEA1 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
 		78E6033325D9CEFE007462E8 /* XCRemoteSwiftPackageReference "SPAlert" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/varabeis/SPAlert";
@@ -1046,6 +1071,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 785FB61B25D20C55009EC3F6 /* XCRemoteSwiftPackageReference "neumorphic" */;
 			productName = Neumorphic;
+		};
+		78D30E5626AD15370008EEA1 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78D30E5526AD15370008EEA1 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
 		};
 		78E6033425D9CEFE007462E8 /* SPAlert */ = {
 			isa = XCSwiftPackageProductDependency;

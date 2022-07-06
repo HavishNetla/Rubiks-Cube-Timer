@@ -9,6 +9,7 @@ import SwiftUI
 import AudioToolbox
 import PartialSheet
 import SSToastMessage
+import ConfettiSwiftUI
 
 class Flags: ObservableObject {
     @Published var finishedLoading: Bool = false
@@ -35,6 +36,8 @@ struct TimerView: View {
     @ObservedObject var flags = Flags()
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
     
+    @State var counter: Int = 0
+
     var delayPress: some Gesture {
         LongPressGesture(minimumDuration: 0.5)
             .updating($isLoading) { currentState, gestureState, transaction in
@@ -109,6 +112,7 @@ struct TimerView: View {
                                 (flags.hasStarted ? Color.primary : Color.green)
                             )
                     )
+                ConfettiCannon(counter: $counter)
                 Spacer()
                 
             }

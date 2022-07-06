@@ -1,0 +1,106 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BLTNBoard",
+        "repositoryURL": "https://github.com/alexisakers/BulletinBoard",
+        "state": {
+          "branch": null,
+          "revision": "e8ba81d25e41e5d24d6a4f404ed28443d728723b",
+          "version": "5.0.0"
+        }
+      },
+      {
+        "package": "SwiftUICharts",
+        "repositoryURL": "https://github.com/AppPear/ChartView",
+        "state": {
+          "branch": null,
+          "revision": "4699847a9ac0c694666cea3acef133498952566e",
+          "version": "1.5.4"
+        }
+      },
+      {
+        "package": "ConfettiSwiftUI",
+        "repositoryURL": "https://github.com/simibac/ConfettiSwiftUI",
+        "state": {
+          "branch": null,
+          "revision": "4aac70f5264e59dfed75d6f1c282bb147f101a49",
+          "version": "0.2.1"
+        }
+      },
+      {
+        "package": "CustomModalView",
+        "repositoryURL": "https://github.com/jankaltoun/CustomModalView",
+        "state": {
+          "branch": null,
+          "revision": "672cc727956c7006888044ca3de35e03f4067f55",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Neumorphic",
+        "repositoryURL": "https://github.com/costachung/neumorphic.git",
+        "state": {
+          "branch": null,
+          "revision": "df59e5e82ab335243848508ccb6e689fffdf596e",
+          "version": "1.2.6"
+        }
+      },
+      {
+        "package": "PartialSheet",
+        "repositoryURL": "https://github.com/AndreaMiotto/PartialSheet.git",
+        "state": {
+          "branch": null,
+          "revision": "936465232b6399e402e79d5b031622af9a5e9960",
+          "version": "2.1.11"
+        }
+      },
+      {
+        "package": "PopupView",
+        "repositoryURL": "https://github.com/exyte/PopupView.git",
+        "state": {
+          "branch": null,
+          "revision": "7276f92e123969e5ced9212a5f5049d30954106b",
+          "version": "0.0.11"
+        }
+      },
+      {
+        "package": "QuickLayout",
+        "repositoryURL": "https://github.com/huri000/QuickLayout",
+        "state": {
+          "branch": null,
+          "revision": "6be62decbe508d8fc8f9dbafc349d05bab03c38b",
+          "version": "3.0.1"
+        }
+      },
+      {
+        "package": "SPAlert",
+        "repositoryURL": "https://github.com/varabeis/SPAlert",
+        "state": {
+          "branch": null,
+          "revision": "0c28dc4aa42c4f2c1cef7ad892d5d6ecbb30ebd2",
+          "version": "3.0.3"
+        }
+      },
+      {
+        "package": "SSToastMessage",
+        "repositoryURL": "https://github.com/SimformSolutionsPvtLtd/SSToastMessage",
+        "state": {
+          "branch": null,
+          "revision": "6f8c15ae5347655a22651c94ed29a651c172e6ce",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "SwiftEntryKit",
+        "repositoryURL": "https://github.com/huri000/SwiftEntryKit",
+        "state": {
+          "branch": null,
+          "revision": "c2d42574e4fe4e1f9719843f35add7922942a16b",
+          "version": "1.2.7"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

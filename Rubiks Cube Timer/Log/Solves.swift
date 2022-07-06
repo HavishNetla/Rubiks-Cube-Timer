@@ -23,7 +23,8 @@ struct Solves: View {
     @State private var pb: Double = Double.infinity
     @State private var showingConfirmationDeleteAlert = false
     @State var modalIsDisplayed = false
-
+    @State private var moreInfoPuzzle: Solve? = nil
+    
     let columns = [
         GridItem(.adaptive(minimum: 100, maximum: 120)),
     ]
@@ -38,44 +39,41 @@ struct Solves: View {
             VStack {
                 HStack {
                     Spacer()
-                    Button(action: { self.modalIsDisplayed = true }) {
-                        Text("Show modal")
-                    }
                     
-                    //                    Button(action: {
-                    //                        showingConfirmationDeleteAlert = true
-                    //                    }, label: {
-                    //                        Label("Delete All", systemImage: "trash")
-                    //                            .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
-                    //                            .background(Color.red)
-                    //                            .foregroundColor(.white)
-                    //                            .cornerRadius(10)
-                    //                    })
-                    //                    .alert(isPresented: $showingConfirmationDeleteAlert) {
-                    //                        Alert(
-                    //                            title: Text("Confirmation"),
-                    //                            message: Text("Are you sure you want to delete all your solves?"),
-                    //                            primaryButton: .destructive(Text("Yes")) {
-                    //                                for item in items.filter({$0.puzzle == Int32(puzzleSelection) && $0.session == sessionSelection}) {
-                    //                                    viewContext.delete(item)
-                    //                                }
-                    //
-                    //                                do {
-                    //                                    try viewContext.save()
-                    //                                } catch {
-                    //                                    // Replace this implementation with code to handle the error appropriately.
-                    //                                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    //                                    let nsError = error as NSError
-                    //                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                    //                                }
-                    //
-                    //                                let image = UIImage.init(systemName: "trash")
-                    //                                let preset = SPAlertIconPreset.custom(image!)
-                    //                                SPAlert.present(title: "Deleted all solves", preset: preset)
-                    //                            },
-                    //                            secondaryButton: .default(Text("No"))
-                    //                        )
-                    //                    }
+                    Button(action: {
+                        showingConfirmationDeleteAlert = true
+                    }, label: {
+                        Label("Delete All", systemImage: "trash")
+                            .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
+                            .background(Color.red)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    })
+                    .alert(isPresented: $showingConfirmationDeleteAlert) {
+                        Alert(
+                            title: Text("Confirmation"),
+                            message: Text("Are you sure you want to delete all your solves?"),
+                            primaryButton: .destructive(Text("Yes")) {
+                                for item in items.filter({$0.puzzle == Int32(puzzleSelection) && $0.session == sessionSelection}) {
+                                    viewContext.delete(item)
+                                }
+                                
+                                do {
+                                    try viewContext.save()
+                                } catch {
+                                    // Replace this implementation with code to handle the error appropriately.
+                                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                                    let nsError = error as NSError
+                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                }
+                                
+                                let image = UIImage.init(systemName: "trash")
+                                let preset = SPAlertIconPreset.custom(image!)
+                                SPAlert.present(title: "Deleted all solves", preset: preset)
+                            },
+                            secondaryButton: .default(Text("No"))
+                        )
+                    }
                     
                     
                 }
@@ -88,6 +86,7 @@ struct Solves: View {
                         SolveTest(time: item.time, scramble: item.scramble ?? "ops", date: item.timestamp!, puzzle: Puzzle(rawValue: item.puzzle)!, pb: item.time == pb).tag(item.timestamp)
                             .onTapGesture {
                                 self.modalIsDisplayed = true
+                                moreInfoPuzzle = item
                             }
                             .contextMenu(ContextMenu(menuItems: {
                                 Button {
@@ -117,7 +116,15 @@ struct Solves: View {
                 }
                 .padding(.horizontal)
             }.padding(.vertical)
-        }.onChange(of: puzzleSelection, perform: { value in
+            
+            
+        }
+        .modal(isPresented: $modalIsDisplayed) {
+            SolveMoreInfoView(
+                puzzle: moreInfoPuzzle
+            )
+        }.modalStyle(FancyModalStyle())
+        .onChange(of: puzzleSelection, perform: { value in
             findPB()
         })
         .onChange(of: sessionSelection, perform: { value in
@@ -126,10 +133,6 @@ struct Solves: View {
         .onAppear(perform: {
             findPB()
         })
-        .modal(isPresented: $modalIsDisplayed) {
-            SolveMoreInfoView()
-        }.modalStyle(FancyModalStyle())
-
     }
     
     private func findPB() {

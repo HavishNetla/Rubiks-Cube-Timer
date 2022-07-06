@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import SPAlert
 
 struct SessionCubeSelector: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -16,11 +17,19 @@ struct SessionCubeSelector: View {
     @Binding var selectedSession: String
 
     @State private var isUsingDefault: Bool = true
+    @State private var showingConfirmationDeleteAlert = false
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Session.timestamp, ascending: true)],
         animation: .default)
     var sessions: FetchedResults<Session>
+    
+    @State private var sessionToDelete: Session?
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Solve.timestamp, ascending: false)],
+        animation: .default)
+    private var solves: FetchedResults<Solve>
     
     let puzzles = [
         "2x2",
@@ -43,15 +52,31 @@ struct SessionCubeSelector: View {
                         ForEach(0 ..< puzzles.count) {
                             Text(self.puzzles[$0])
                         }
-                    }
+                    }.onChange(of: selectedPuzzle, perform: { value in
+                        if sessions.filter({$0.puzzle == Int32(selectedPuzzle)}).isEmpty {
+                            isUsingDefault = true
+                            selectedSession = "Default"
+                        }
+                    })
                 }
                 
                 Section(header: Text("Session")) {
                     Toggle(isOn: $isUsingDefault) {
                         Text("Use the default session")
                     }.onChange(of: isUsingDefault, perform: { value in
-                        if isUsingDefault {
+                        if sessions.filter({$0.puzzle == Int32(selectedPuzzle)}).isEmpty && isUsingDefault == false {
+                            let image = UIImage.init(systemName: "nosign")
+                            let preset = SPAlertIconPreset.custom(image!)
+                            SPAlert.present(title: "No avalible sessions. Please create one in the \"Add Session\" tab", preset: preset)
+                            
+                            isUsingDefault = true
                             selectedSession = "Default"
+                        } else {
+                            if isUsingDefault {
+                                selectedSession = "Default"
+                            } else {
+                                selectedSession = sessions.filter {$0.puzzle == Int32(selectedPuzzle)}[0].name ?? "Default"
+                            }
                         }
                     })
                     //
@@ -69,11 +94,66 @@ struct SessionCubeSelector: View {
                                 Button(action: {
                                     selectedSession = session.name!
                                 }, label: {
-                                    Text(session.name!)
-                                        .foregroundColor(selectedSession == session.name! ? Color.green : Color.primary)
-                                        .tag(session.name)
+                                    HStack {
+                                        Text(session.name!)
+                                            .foregroundColor(selectedSession == session.name! ? Color.green : Color.primary)
+                                            .tag(session.name)
+                                            .contextMenu(ContextMenu(menuItems: {
+                                                Button {
+                                                    showingConfirmationDeleteAlert = true
+                                                    sessionToDelete = session
+                                                } label: {
+                                                    Label("Delete", systemImage: "trash.fill")
+                                                }
+                                            }))
+                                        Spacer()
+                                        
+                                        Button(action: {
+                                            showingConfirmationDeleteAlert = true
+                                            sessionToDelete = session
+                                        }) {
+                                            Image(systemName: "trash.fill").foregroundColor(.red)
+                                        }
+                                    }
                                 })
-                            }.onDelete(perform: deleteItems)
+                                .alert(isPresented: $showingConfirmationDeleteAlert) {
+                                    Alert(
+                                        title: Text("Confirmation"),
+                                        message: Text("Are you sure you want to delete this session and ALL the solves in the session?"),
+                                        primaryButton: .destructive(Text("Yes")) {
+                                            withAnimation {
+
+                                                let sessionToDeleteTemp = sessionToDelete!.name
+                                                
+                                                viewContext.delete(sessionToDelete!)
+                                                
+                                                for solve in solves.filter({$0.puzzle == Int32(selectedPuzzle) && $0.session == sessionToDeleteTemp}) {
+                                                    viewContext.delete(solve)
+                                                }
+                                                
+                                                do {
+                                                    try viewContext.save()
+                                                } catch {
+                                                    // Replace this implementation with code to handle the error appropriately.
+                                                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                                                    let nsError = error as NSError
+                                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                                }
+                                                
+                                                if selectedSession == sessionToDeleteTemp {
+                                                    selectedSession = sessions.filter {$0.puzzle == Int32(selectedPuzzle)}[0].name ?? "Default"
+                                                }
+                                                
+                                                let image = UIImage.init(systemName: "trash")
+                                                let preset = SPAlertIconPreset.custom(image!)
+                                                SPAlert.present(title: "Deleted the session, and all the solves in the session", preset: preset)
+                                                
+                                            }
+                                        },
+                                        secondaryButton: .default(Text("No"))
+                                    )
+                                }
+                            }//.onDelete(perform: deleteItems)
                         }
                     }
                 }

@@ -13,7 +13,7 @@ struct SolveTest: View {
     var date: Date
     var puzzle: Puzzle
     var pb: Bool
-    
+
     var body: some View {
         VStack {
             HStack {
